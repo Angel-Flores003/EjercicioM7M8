@@ -6,7 +6,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import cat.itb.m78.exercices.State.GoodMorningAndNight
+import cat.itb.m78.exercices.State.SayHelloScreen
 import cat.itb.m78.exercices.Stateless.Contact
+import cat.itb.m78.exercices.Stateless.ContactApp
 import cat.itb.m78.exercices.Stateless.HelloWorld
 import cat.itb.m78.exercices.Stateless.Resource
 import cat.itb.m78.exercices.Stateless.Welcome
@@ -15,5 +18,5 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    Contact()
+    GoodMorningAndNight()
 }
