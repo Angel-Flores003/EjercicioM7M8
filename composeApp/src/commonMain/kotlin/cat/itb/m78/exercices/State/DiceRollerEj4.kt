@@ -53,9 +53,9 @@ fun DiceRoller()
         val snackbarHostState = remember { SnackbarHostState() }
         Button(onClick = {
             //if ()
-                scope.launch {
-                    snackbarHostState.showSnackbar("JACKPOT!")
-                }
+            scope.launch {
+                snackbarHostState.showSnackbar("JACKPOT!")
+            }
             /*Scaffold(
                 snackbarHost = {
                     SnackbarHost(hostState = snackbarHostState)
@@ -72,19 +72,6 @@ fun DiceRoller()
         }
             , modifier = Modifier.fillMaxWidth()) {
             Text("ROLL THE DICE")
-        }
-        Scaffold(
-            snackbarHost = {
-                SnackbarHost(hostState = snackbarHostState)
-            },
-        ){ padding ->
-            Button(modifier = Modifier.padding(padding), onClick = {
-                scope.launch {
-                    snackbarHostState.showSnackbar("JACKPOT!")
-                }
-            }){
-                Text("Say hello")
-            }
         }
     }
 }
