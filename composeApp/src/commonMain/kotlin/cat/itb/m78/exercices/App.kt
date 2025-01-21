@@ -15,10 +15,14 @@ import cat.itb.m78.exercices.Stateless.ContactApp
 import cat.itb.m78.exercices.Stateless.HelloWorld
 import cat.itb.m78.exercices.Stateless.Resource
 import cat.itb.m78.exercices.Stateless.Welcome
+import cat.itb.m78.exercices.ViewModel.Counter
+import cat.itb.m78.exercices.ViewModel.HelloByeVmApp
+import cat.itb.m78.exercices.ViewModel.HelloByeVmAppv2
+import cat.itb.m78.exercices.ViewModel.ShoppingList
 import cat.itb.m78.exercices.theme.AppTheme
 import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    DiceRoller()
+    HelloByeVmApp()
 }
