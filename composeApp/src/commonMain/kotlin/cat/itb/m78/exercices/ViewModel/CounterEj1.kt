@@ -23,26 +23,29 @@ fun Counter() {
 @Composable
 fun Counter(value: Int, onIncreaserCounter: ()->Unit) {
     Row {
-        Column {
-            Text ("$value")
-            Button(onClick = onIncreaserCounter) {
-                Text ("Score")
-            }
-        }
-        Column {
-            var num by remember { mutableStateOf(0) };
-            Text ("$num")
-            Button(onClick = {num++}) {
-                Text ("Score")
-            }
-        }
+        SingleCounter(counter1, onIncreaserCounter1)
+        SingleCounter(counter2, onIncreaserCounter2)
     }
 }
 
 class CounterViewModel : ViewModel(){
-    val counter = mutableStateOf(0)
+    val counter1 = mutableStateOf(0)
+    val counter2 = mutableStateOf(0)
 
-    fun increaseCounter(){
-        counter.value++
+    fun increaseCounter1(){
+        counter1.value++
+    }
+    fun increaseCounter2(){
+        counter2.value++
+    }
+}
+
+@Composable
+fun SingleCounter(counter: Int, onIncreaserCounter: () -> Unit) {
+    Column {
+        Text(counter.toString())
+        Button(onClick = onIncreaserCounter) {
+            Text("Count")
+        }
     }
 }

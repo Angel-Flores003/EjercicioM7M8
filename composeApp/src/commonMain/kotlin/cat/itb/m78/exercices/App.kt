@@ -22,5 +22,5 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    Counter()
+    ShoppingList()
 }
