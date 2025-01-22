@@ -15,13 +15,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun Counter() {
     val viewModel = viewModel { CounterViewModel() }
-    val value = viewModel.counter.value
-    Counter(value, viewModel::increaseCounter)
+    Counter(viewModel.counter1.value, viewModel.counter2.value, viewModel::increaseCounter1, viewModel::increaseCounter2)
 
 }
 
 @Composable
-fun Counter(value: Int, onIncreaserCounter: ()->Unit) {
+fun Counter(
+    counter1: Int,
+    counter2: Int,
+    onIncreaserCounter1: ()->Unit,
+    onIncreaserCounter2: () -> Unit
+) {
     Row {
         SingleCounter(counter1, onIncreaserCounter1)
         SingleCounter(counter2, onIncreaserCounter2)

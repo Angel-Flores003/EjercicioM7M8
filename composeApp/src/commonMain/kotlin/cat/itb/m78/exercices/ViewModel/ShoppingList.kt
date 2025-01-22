@@ -16,8 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
+class ShoppingListViewModel : ViewModel(){
+
+}
+
 //@Composable
-//fun ShoppingList() {
+//fun ShoppingListView() {
 //    val viewModel = viewModel { ShoppingListVewModel() }
 //}
 
