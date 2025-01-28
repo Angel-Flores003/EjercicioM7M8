@@ -62,8 +62,8 @@ fun ShoppingList(name: String,
                 if (name.isNotEmpty() && amount.isNotEmpty())
                 {
                     val newshoppingList = shoppingList + (Pair(name, amount))
-                    name = ""
-                    amount = ""
+                    //name = ""
+                    //amount = ""
                     shoppingList = newshoppingList
                 }}){
                     Text("Add")
