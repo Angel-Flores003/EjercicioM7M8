@@ -1,61 +1,74 @@
 package cat.itb.m78.exercices.Navigation
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 
-object Destination{
+object Destination {
     @Serializable
-    data object HelloWorld
-    @Serializable
-    data object Welcome
-    @Serializable
-    data object Resource
-    @Serializable
-    data object Contact
-    @Serializable
-    data object MessagesList
-    @Serializable
-    data object GoodMorningAndNight
-    @Serializable
-    data object SayHelloScreen
-    @Serializable
-    data object SecretNumber
-    @Serializable
-    data object DiceRoller
-    @Serializable
-    data object Counter
-    @Serializable
-    data object ShoppingList
-    @Serializable
-    data object ManualNav
-    @Serializable
-    data object TicTacToe
+    data object MainMenu
     @Serializable
     data object Screen1
     @Serializable
     data object Screen2
     @Serializable
-    data object Screen3
+    data object Screen3Hello
+    @Serializable
+    data object Screen3Bye
 }
+
 @Composable
 fun LibNavScreenSample() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Destination.Screen1) {
+    NavHost(navController = navController, startDestination = Destination.MainMenu) {
+        composable<Destination.MainMenu> {
+            Screen1 { navController.navigate(Destination.Screen1) }
+            Screen2 { navController.navigate(Destination.Screen2) }
+            Screen3Hello { navController.navigate(Destination.Screen3Hello) }
+            Screen3Bye { navController.navigate(Destination.Screen3Bye) }
+        }
         composable<Destination.Screen1> {
-            Screen1(
-                navigateToScreen2 = { navController.navigate(Destination.Screen2) },
-            )
+            Screen1 { navController.navigate(Destination.MainMenu) }
         }
         composable<Destination.Screen2> {
-            Screen2 { navController.navigate(Destination.Screen3(it)) }
+            Screen2 { navController.navigate(Destination.MainMenu) }
         }
-        composable<Destination.Screen3> { backStack ->
-            val message = backStack.toRoute<Destination.Screen3>().message
-            Screen3(message)
+        composable<Destination.Screen3Hello> {
+            Screen3Hello { navController.navigate(Destination.MainMenu) }
         }
+        composable<Destination.Screen3Bye> {
+            Screen3Bye { navController.navigate(Destination.MainMenu) }
+        }
+    }
+}
+
+@Composable
+fun LibraryNav() {
+    val viewModel = viewModel<ManualNavViewModel>()
+    val screen by remember { viewModel.screenState }
+
+    when (screen) {
+        Screen.MainMenu -> MainMenu(
+            onScreen1Click = { viewModel.navigateTo(Screen.Screen1) },
+            onScreen2Click = { viewModel.navigateTo(Screen.Screen2) },
+            onScreen3HelloClick = { viewModel.navigateTo(Screen.Screen3Hello) },
+            onScreen3ByeClick = { viewModel.navigateTo(Screen.Screen3Bye) }
+        )
+
+        Screen.Screen1 -> Screen1(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+        Screen.Screen2 -> Screen2(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+        Screen.Screen3Hello -> Screen3Hello(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+        Screen.Screen3Bye -> Screen3Bye(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
     }
 }
