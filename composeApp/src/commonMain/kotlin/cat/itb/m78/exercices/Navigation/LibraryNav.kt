@@ -33,42 +33,48 @@ fun LibNavScreenSample() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Destination.MainMenu) {
         composable<Destination.MainMenu> {
-            Screen1 { navController.navigate(Destination.Screen1) }
-            Screen2 { navController.navigate(Destination.Screen2) }
-            Screen3Hello { navController.navigate(Destination.Screen3Hello) }
-            Screen3Bye { navController.navigate(Destination.Screen3Bye) }
+            MainMenu(
+                onScreen1Click = { navController.navigate(Destination.Screen1) },
+                onScreen2Click = { navController.navigate(Destination.Screen2) },
+                onScreen3HelloClick = { navController.navigate(Destination.Screen3Hello) },
+                onScreen3ByeClick = { navController.navigate(Destination.Screen3Bye) }
+            )
         }
         composable<Destination.Screen1> {
-            Screen1 { navController.navigate(Destination.MainMenu) }
+            Screen1 (
+                onBackToMainMenu = { navController.navigate(Destination.MainMenu) })
         }
         composable<Destination.Screen2> {
-            Screen2 { navController.navigate(Destination.MainMenu) }
+            Screen2 (
+                onBackToMainMenu = { navController.navigate(Destination.MainMenu) })
         }
         composable<Destination.Screen3Hello> {
-            Screen3Hello { navController.navigate(Destination.MainMenu) }
+            Screen3Hello (
+                onBackToMainMenu = { navController.navigate(Destination.MainMenu) })
         }
         composable<Destination.Screen3Bye> {
-            Screen3Bye { navController.navigate(Destination.MainMenu) }
+            Screen3Bye (
+                onBackToMainMenu = { navController.navigate(Destination.MainMenu) })
         }
     }
 }
 
-@Composable
-fun LibraryNav() {
-    val viewModel = viewModel<ManualNavViewModel>()
-    val screen by remember { viewModel.screenState }
-
-    when (screen) {
-        Screen.MainMenu -> MainMenu(
-            onScreen1Click = { viewModel.navigateTo(Screen.Screen1) },
-            onScreen2Click = { viewModel.navigateTo(Screen.Screen2) },
-            onScreen3HelloClick = { viewModel.navigateTo(Screen.Screen3Hello) },
-            onScreen3ByeClick = { viewModel.navigateTo(Screen.Screen3Bye) }
-        )
-
-        Screen.Screen1 -> Screen1(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-        Screen.Screen2 -> Screen2(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-        Screen.Screen3Hello -> Screen3Hello(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-        Screen.Screen3Bye -> Screen3Bye(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-    }
-}
+//@Composable
+//fun LibraryNav() {
+//    val viewModel = viewModel<ManualNavViewModel>()
+//    val screen by remember { viewModel.screenState }
+//
+//    when (screen) {
+//        Screen.MainMenu -> MainMenu(
+//            onScreen1Click = { viewModel.navigateTo(Screen.Screen1) },
+//            onScreen2Click = { viewModel.navigateTo(Screen.Screen2) },
+//            onScreen3HelloClick = { viewModel.navigateTo(Screen.Screen3Hello) },
+//            onScreen3ByeClick = { viewModel.navigateTo(Screen.Screen3Bye) }
+//        )
+//
+//        Screen.Screen1 -> Screen1(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+//        Screen.Screen2 -> Screen2(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+//        Screen.Screen3Hello -> Screen3Hello(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+//        Screen.Screen3Bye -> Screen3Bye(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+//    }
+//}

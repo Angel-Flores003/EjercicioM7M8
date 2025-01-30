@@ -6,9 +6,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cat.itb.m78.exercices.Navigation.LibraryNav
+import cat.itb.m78.exercices.Navigation.LibNavScreenSample
 import cat.itb.m78.exercices.Navigation.ManualNav
 import cat.itb.m78.exercices.Navigation.Screen1
+import cat.itb.m78.exercices.Navigation.TicTacToe
 import cat.itb.m78.exercices.State.DiceRoller
 import cat.itb.m78.exercices.State.GoodMorningAndNight
 import cat.itb.m78.exercices.State.SayHelloScreen
@@ -26,5 +27,5 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    LibraryNav()
+    TicTacToe()
 }
