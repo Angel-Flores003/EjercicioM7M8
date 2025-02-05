@@ -20,7 +20,7 @@ import cat.itb.m78.exercices.Stateless.Resource
 import cat.itb.m78.exercices.Stateless.Welcome
 import cat.itb.m78.exercices.Trivial.Menu
 import cat.itb.m78.exercices.Trivial.Projecte
-import cat.itb.m78.exercices.Trivial.Screen1
+import cat.itb.m78.exercices.Trivial.Question
 import cat.itb.m78.exercices.Trivial.Result
 import cat.itb.m78.exercices.Trivial.Settings
 import cat.itb.m78.exercices.ViewModel.Counter
@@ -31,5 +31,5 @@ import org.jetbrains.compose.reload.DevelopmentEntryPoint
 
 @Composable
 internal fun App() = AppTheme {
-    Menu()
+    Settings()
 }
