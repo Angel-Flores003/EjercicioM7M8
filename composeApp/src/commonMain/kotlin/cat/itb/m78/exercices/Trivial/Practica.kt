@@ -75,22 +75,23 @@ fun Practica() {
     val screen by remember { viewModel.screenState }
 
     when (screen) {
-        Screen.MainMenu -> MainMenu(
-            onScreen1Click = { viewModel.navigateTo(Practica.Menu) },
-            onScreen2Click = { viewModel.navigateTo(Screen.Screen2) },
-            onScreen3HelloClick = { viewModel.navigateTo(Screen.Screen3Hello) },
-            onScreen3ByeClick = { viewModel.navigateTo(Screen.Screen3Bye) }
+        Practica.Menu -> Menu(
+            onSettingsClick = { viewModel.navigateTo(Practica.Settings) },
+            onQuestionClick = { viewModel.navigateTo(Practica.Question(it)) }
         )
 
-        Screen.Screen1 -> Screen1(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-        Screen.Screen2 -> Screen2(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-        Screen.Screen3Hello -> Screen3Hello(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-        Screen.Screen3Bye -> Screen3Bye(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
+        Practica.Settings -> Settings(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
+        Practica.Result -> Result(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
+        is Practica.Question -> Question(currentScreen.message,
+            onSettingsClick = { viewModel.navigateTo(Practica.Result) })
     }
 }
 
 @Composable
-fun Menu() {
+fun Menu(
+    onSettingsClick: () -> Unit,
+    onQuestionClick: () -> Unit
+) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -101,7 +102,7 @@ fun Menu() {
             modifier = Modifier.size((200.dp)),
             contentDescription = null
         )
-        Button(onClick = { },
+        Button(onClick = onQuestionClick,
             shape = CutCornerShape(10.dp),
             border = BorderStroke(
                 width = 2.dp,
@@ -115,7 +116,7 @@ fun Menu() {
         ) {
             Text("New Game")
         }
-        Button(onClick = {},
+        Button(onClick = onSettingsClick,
             shape = CutCornerShape(10.dp),
             border = BorderStroke(
                 width = 2.dp,
@@ -133,7 +134,7 @@ fun Menu() {
 }
 
 @Composable
-fun Question() {
+fun Question(message: String, onSettingsClick: () -> Unit) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
@@ -241,7 +242,7 @@ fun Button4() {
 }
 
 @Composable
-fun Result() {
+fun Result( onBackToMenu: () -> Unit) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
@@ -251,7 +252,7 @@ fun Result() {
         Text("Your Score", fontWeight = FontWeight.Black)
         Text("puntuación")//Cambiar Luego
         Spacer(Modifier.height(250.dp))
-        Button(onClick = {},
+        Button(onClick = onBackToMenu,
             shape = CutCornerShape(4.dp),
             border = BorderStroke(
                 width = 2.dp,
@@ -269,7 +270,7 @@ fun Result() {
 }
 
 @Composable
-fun Settings() {
+fun Settings(onBackToMenu: () -> Unit) {
     Column (modifier = Modifier.fillMaxSize()){
         Text("Difficulty", fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(10.dp))
@@ -283,7 +284,7 @@ fun Settings() {
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize(),
     ){
-        Button(onClick = {},
+        Button(onClick = onBackToMenu,
             shape = CutCornerShape(4.dp),
             border = BorderStroke(
                 width = 2.dp,
