@@ -17,6 +17,7 @@ import cat.itb.m78.exercices.Stateless.ContactApp
 import cat.itb.m78.exercices.Stateless.HelloWorld
 import cat.itb.m78.exercices.Stateless.Resource
 import cat.itb.m78.exercices.Stateless.Welcome
+import cat.itb.m78.exercices.Trivial.Menu
 import cat.itb.m78.exercices.Trivial.Practica
 import cat.itb.m78.exercices.ViewModel.Counter
 import cat.itb.m78.exercices.ViewModel.ShoppingList
