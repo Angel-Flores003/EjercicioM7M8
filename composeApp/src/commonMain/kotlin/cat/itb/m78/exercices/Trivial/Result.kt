@@ -18,7 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Result( onBackToMenu: () -> Unit) {
+fun Result(
+    onBackToMenu: () -> Unit,
+    score: Int,
+    total: Int
+    ) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,

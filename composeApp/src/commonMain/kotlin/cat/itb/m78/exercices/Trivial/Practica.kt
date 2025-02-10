@@ -53,12 +53,6 @@ sealed interface Practica {
 
 }
 
-data class Preguntas(
-    val text: String,
-    val respuestas: List<String>,
-    val correct: Int
-)
-
 class PracticaViewModel : ViewModel() {
     val screenState = mutableStateOf<Practica>(Practica.Menu)
 
