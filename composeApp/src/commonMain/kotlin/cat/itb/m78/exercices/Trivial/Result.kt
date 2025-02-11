@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,8 +21,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Result(
     onBackToMenu: () -> Unit,
-    score: Int,
-    total: Int
+//    score: Int,
+//    total: Int
     ) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -29,8 +30,8 @@ fun Result(
         modifier = Modifier.fillMaxSize(),
     ){
         Spacer(Modifier.height(200.dp))
-        Text("Your Score", fontWeight = FontWeight.Black)
-        Text("puntuación")//Cambiar Luego
+//        Text(text = "Your Score: ", fontWeight = FontWeight.Black)
+//        Text(text = "$score de $total", style = MaterialTheme.typography.bodyLarge)
         Spacer(Modifier.height(250.dp))
         Button(onClick = onBackToMenu,
             shape = CutCornerShape(4.dp),
