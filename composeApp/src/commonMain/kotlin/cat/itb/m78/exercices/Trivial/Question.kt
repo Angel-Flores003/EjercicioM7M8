@@ -55,7 +55,7 @@ val questions = listOf(Preguntas("¿Cuál es la capital de Francia?", listOf("Pa
     Preguntas( "¿Qué dia se dijo esta frase? 'Si ayer fuese mañana, hoy seria viernes'", listOf("viernes", "Sabado", "Domingo", "Jueves"), "Domingo"),
     Preguntas( "¿Son mejore slos perros o los gatos?", listOf("Los Gatos", "Los perros", "Cada uno tiene sus cosas", "Prefiero los hamsters"), "Cada uno tiene sus cosas"),
     Preguntas( "¿Cuando se creó minecraft?", listOf("2002", "2020", "2011", "2035"), "2011"))
-//
+
 //@Composable
 //fun TrivialGame() {
 //    val questions = remember {
@@ -66,10 +66,11 @@ val questions = listOf(Preguntas("¿Cuál es la capital de Francia?", listOf("Pa
 //}
 
 class QuestionViewModel : ViewModel(){
-    val question = questions[0]
+    var i = 0
+    val question = questions[i]
 
     fun onAnswerSelected(selected: String){
-        TODO()
+        i++
     }
 }
 
@@ -93,20 +94,86 @@ fun Question(
         modifier = Modifier.fillMaxSize(),
     ){
         Spacer(Modifier.height(10.dp))
-        Text("Round 1/10", fontWeight = FontWeight.Bold)
-        Spacer(Modifier.height(100.dp))
+        Text("Round ${counterround}/10", fontWeight = FontWeight.Bold)
+        Spacer(Modifier.height(200.dp))
         Text(text = question.text, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(20.dp))
-        Column{
-            repeat(4){
-                Button({}){
-                    Text(question.respuestas[it])
-                }
+
+    }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize(),
+    ){
+//        repeat(4){
+//            Button(onClick = {}){
+//                Text(question.respuestas[it])
+//            }
+//        }
+
+        Row {
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Transparent,
+                            Color.Red
+                        )
+                    )
+                )
+            ) {
+                Text(question.respuestas[0])
             }
-
+            Spacer(Modifier.width(50.dp))
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Green,
+                            Color.Transparent
+                        )
+                    )
+                )
+            ) {
+                Text(question.respuestas[1])
+            }
         }
-        Spacer(Modifier.height(10.dp))
-
+        Spacer(Modifier.height(50.dp))
+        Row {
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Transparent,
+                            Color.Cyan
+                        )
+                    )
+                )
+            ) {
+                Text(question.respuestas[2])
+            }
+            Spacer(Modifier.width(50.dp))
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Yellow,
+                            Color.Transparent
+                        )
+                    )
+                )
+            ) {
+                Text(question.respuestas[3])
+            }
+        }
     }
 }
 
