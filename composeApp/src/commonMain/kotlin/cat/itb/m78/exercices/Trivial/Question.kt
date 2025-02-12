@@ -59,12 +59,19 @@ val questions = listOf(Preguntas("¿Cuál es la capital de Francia?", listOf("Be
 class QuestionViewModel : ViewModel(){
     var i by mutableStateOf(0)
     var question by mutableStateOf(questions[i])
+    val counter = mutableStateOf(1)
+    val correct = mutableStateOf(0)
 
     fun onAnswerSelected(selected: String){
         if (i < questions.size - 1)
         {
             i++
             question = questions[i]
+            counter.value++
+            //if(question)
+            {
+
+            }
         }
     }
 }
@@ -72,7 +79,7 @@ class QuestionViewModel : ViewModel(){
 @Composable
 fun Question(){
     val viewModel = viewModel { QuestionViewModel() }
-    Question(viewModel.question, {}, viewModel::onAnswerSelected, 0, {})
+    Question(viewModel.question, {}, viewModel::onAnswerSelected, viewModel.counter.value)
 }
 
 @Composable
@@ -80,8 +87,7 @@ fun Question(
     question: Preguntas,
     onResultShow: () -> Unit,
     onAnswerSelected: (String) -> Unit,
-    counterround: Int,
-    onIncreaserCounterRound: () -> Unit
+    counter: Int
 ) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -89,7 +95,7 @@ fun Question(
         modifier = Modifier.fillMaxSize(),
     ){
         Spacer(Modifier.height(10.dp))
-        Text("Round ${counterround}/10", fontWeight = FontWeight.Bold)
+        Text("Round ${counter}/15", fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(200.dp))
         Text(text = question.text, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(20.dp))
@@ -167,13 +173,5 @@ fun Question(
                 Text(question.respuestas[3])
             }
         }
-    }
-}
-
-class CounterRoundViewModel : ViewModel(){
-    val counter = mutableStateOf(1)
-
-    fun increaseCounter(){
-        counter.value++
     }
 }
