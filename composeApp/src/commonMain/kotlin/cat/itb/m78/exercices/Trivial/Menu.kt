@@ -26,7 +26,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun Menu(
     onSettingsClick: () -> Unit,
-    onQuestionClick: (String) -> Unit
+    onQuestionClick: () -> Unit
 ) {
     var text by remember{ mutableStateOf("") }
     //TextField(text, onValueChange = {text = it})
@@ -40,7 +40,7 @@ fun Menu(
             modifier = Modifier.size((200.dp)),
             contentDescription = null
         )
-        Button(onClick = {onQuestionClick(text)},
+        Button(onClick = onQuestionClick,
             shape = CutCornerShape(10.dp),
             border = BorderStroke(
                 width = 2.dp,

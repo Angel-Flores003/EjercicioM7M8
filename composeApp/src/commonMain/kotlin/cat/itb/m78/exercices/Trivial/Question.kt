@@ -61,10 +61,10 @@ class QuestionViewModel : ViewModel(){
     var question by mutableStateOf(questions[i])
     val counter = mutableStateOf(1)
     val correct = mutableStateOf(0)
-    var results = false
 
-    fun onAnswerSelected(selected: String){
-        if (i < questions.size - 1)
+
+    fun onAnswerSelected(selected: String): Boolean {
+        return if (i < questions.size - 1)
         {
             i++
             question = questions[i]
@@ -73,27 +73,30 @@ class QuestionViewModel : ViewModel(){
             {
 
             }
+            false
         }
         else
         {
-            results = true
+            i = 0
+            question = questions[i]
+            counter.value = 1
+            true
         }
     }
 }
 
 @Composable
-fun Question(){
+fun Question(gotoResults: ()-> Unit){
     val viewModel = viewModel { QuestionViewModel() }
-    Question(viewModel.question, {}, viewModel::onAnswerSelected, viewModel.counter.value, viewModel.results)
+    Question(viewModel.question, viewModel::onAnswerSelected, viewModel.counter.value, gotoResults)
 }
 
 @Composable
 fun Question(
     question: Preguntas,
-    onResultShow: () -> Unit,
-    onAnswerSelected: (String) -> Unit,
+    onAnswerSelected: (String) -> Boolean,
     counter: Int,
-    result: Boolean
+    gotoResults: ()-> Unit
 ) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -113,7 +116,10 @@ fun Question(
         modifier = Modifier.fillMaxSize(),
     ){
         Row (modifier = Modifier.fillMaxWidth() ){
-            Button(onClick = { onAnswerSelected(question.respuestas[0]) },
+            Button(onClick = {
+                if(onAnswerSelected(question.respuestas[0])){
+                    gotoResults()
+                }},
                 shape = CutCornerShape(4.dp),
                 border = BorderStroke(
                     width = 2.dp,
@@ -129,7 +135,10 @@ fun Question(
                 Text(question.respuestas[0])
             }
             Spacer(Modifier.width(50.dp))
-            Button(onClick = { onAnswerSelected(question.respuestas[1]) },
+            Button(onClick = {
+                if(onAnswerSelected(question.respuestas[1])){
+                    gotoResults()
+                }},
                 shape = CutCornerShape(4.dp),
                 border = BorderStroke(
                     width = 2.dp,
@@ -147,7 +156,10 @@ fun Question(
         }
         Spacer(Modifier.height(25.dp))
         Row (modifier = Modifier.fillMaxWidth() ){
-            Button(onClick = { onAnswerSelected(question.respuestas[2]) },
+            Button(onClick = {
+                if(onAnswerSelected(question.respuestas[2])){
+                    gotoResults()
+                }},
                 shape = CutCornerShape(4.dp),
                 border = BorderStroke(
                     width = 2.dp,
@@ -163,7 +175,10 @@ fun Question(
                 Text(question.respuestas[2])
             }
             Spacer(Modifier.width(50.dp))
-            Button(onClick = { onAnswerSelected(question.respuestas[3]) },
+            Button(onClick = {
+                if(onAnswerSelected(question.respuestas[3])){
+                    gotoResults()
+                }},
                 shape = CutCornerShape(4.dp),
                 border = BorderStroke(
                     width = 2.dp,
@@ -179,9 +194,6 @@ fun Question(
                 Text(question.respuestas[3])
             }
         }
-        if (result == true)
-        {
-            onResultShow()
-        }
+
     }
 }

@@ -48,7 +48,8 @@ import org.jetbrains.compose.resources.painterResource
 
 sealed interface Practica {
     object Menu : Practica
-    data class Question(val message: String) : Practica
+    object Question : Practica
+    //data class Question(val message: String) : Practica
     object Settings : Practica
     object Result : Practica
 
@@ -70,13 +71,15 @@ fun Practica() {
     when (screen) {
         Practica.Menu -> Menu(
             onSettingsClick = { viewModel.navigateTo(Practica.Settings) },
-            onQuestionClick = { viewModel.navigateTo(Practica.Question(it)) }
+            onQuestionClick = {viewModel.navigateTo(Practica.Question)},
+            //onQuestionClick = { viewModel.navigateTo(Practica.Question(it)) }
         )
 
         Practica.Settings -> Settings(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
         Practica.Result -> Result(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
-        is Practica.Question -> Question()
+        Practica.Question -> Question(gotoResults = {viewModel.navigateTo(Practica.Result)})
+//        /*is*/Practica.Question -> Question()
 //        screen.message,
-//            onResultShow = { viewModel.navigateTo(Practica.Result) })
+//        onResultShow = { viewModel.navigateTo(Practica.Result) })
     }
 }

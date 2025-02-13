@@ -30,8 +30,8 @@ fun Result(
         modifier = Modifier.fillMaxSize(),
     ){
         Spacer(Modifier.height(200.dp))
-//        Text(text = "Your Score: ", fontWeight = FontWeight.Black)
-//        Text(text = "$score de $total", style = MaterialTheme.typography.bodyLarge)
+        Text(text = "Your Score: ", fontWeight = FontWeight.Black)
+//        Text(text = "$score de 15 preguntes", style = MaterialTheme.typography.bodyLarge) //$total
         Spacer(Modifier.height(250.dp))
         Button(onClick = onBackToMenu,
             shape = CutCornerShape(4.dp),
