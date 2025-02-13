@@ -54,13 +54,14 @@ val questions = listOf(Preguntas("¿Cuál es la capital de Francia?", listOf("Be
     Preguntas( "¿Cuantos meses tienen 30 dias?", listOf("12", "4", "11", "1"), "11"),//3
     Preguntas( "¿Qué dia se dijo esta frase? 'Si ayer fuese mañana, hoy seria viernes'", listOf("viernes", "Sabado", "Domingo", "Jueves"), "Domingo"),//3
     Preguntas( "¿Son mejores los perros o los gatos?", listOf("Los Gatos", "Los perros", "Prefiero los hamsters", "Cada uno tiene sus cosas"), "Cada uno tiene sus cosas"),//4
-    Preguntas( "¿Cuando se creó minecraft?", listOf("2002", "2011", "2020", "2035"), "2011"))//2
+    Preguntas( "¿Cuando se creó minecraft?", listOf("2002", "2011", "2009", "2035"), "2011"))//2
 
 class QuestionViewModel : ViewModel(){
     var i by mutableStateOf(0)
     var question by mutableStateOf(questions[i])
     val counter = mutableStateOf(1)
     val correct = mutableStateOf(0)
+    var results = false
 
     fun onAnswerSelected(selected: String){
         if (i < questions.size - 1)
@@ -73,13 +74,17 @@ class QuestionViewModel : ViewModel(){
 
             }
         }
+        else
+        {
+            results = true
+        }
     }
 }
 
 @Composable
 fun Question(){
     val viewModel = viewModel { QuestionViewModel() }
-    Question(viewModel.question, {}, viewModel::onAnswerSelected, viewModel.counter.value)
+    Question(viewModel.question, {}, viewModel::onAnswerSelected, viewModel.counter.value, viewModel.results)
 }
 
 @Composable
@@ -87,7 +92,8 @@ fun Question(
     question: Preguntas,
     onResultShow: () -> Unit,
     onAnswerSelected: (String) -> Unit,
-    counter: Int
+    counter: Int,
+    result: Boolean
 ) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -172,6 +178,10 @@ fun Question(
             ) {
                 Text(question.respuestas[3])
             }
+        }
+        if (result == true)
+        {
+            onResultShow()
         }
     }
 }
