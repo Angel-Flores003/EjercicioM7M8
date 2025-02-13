@@ -71,15 +71,11 @@ fun Practica() {
     when (screen) {
         Practica.Menu -> Menu(
             onSettingsClick = { viewModel.navigateTo(Practica.Settings) },
-            onQuestionClick = {viewModel.navigateTo(Practica.Question)},
-            //onQuestionClick = { viewModel.navigateTo(Practica.Question(it)) }
+            onQuestionClick = {viewModel.navigateTo(Practica.Question)}
         )
 
         Practica.Settings -> Settings(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
         Practica.Result -> Result(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
         Practica.Question -> Question(gotoResults = {viewModel.navigateTo(Practica.Result)})
-//        /*is*/Practica.Question -> Question()
-//        screen.message,
-//        onResultShow = { viewModel.navigateTo(Practica.Result) })
     }
 }

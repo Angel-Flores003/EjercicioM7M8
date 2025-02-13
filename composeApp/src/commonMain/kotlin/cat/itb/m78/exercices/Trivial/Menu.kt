@@ -29,7 +29,6 @@ fun Menu(
     onQuestionClick: () -> Unit
 ) {
     var text by remember{ mutableStateOf("") }
-    //TextField(text, onValueChange = {text = it})
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
