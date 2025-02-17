@@ -64,19 +64,19 @@ class QuestionViewModel : ViewModel(){
 
 
     fun onAnswerSelected(selected: String): Boolean {
+        val isCorrect = selected == question.correct
+
+        if (isCorrect) {
+            correct.value++
+        }
         return if (i < questions.size - 1)
         {
             i++
             question = questions[i]
             counter.value++
-//            if(question.correct.length == question.respuestas)
-//            {
-//
-//            }
             false
         }
-        else
-        {
+        else {
             i = 0
             counter.value = 1
             true
@@ -196,33 +196,3 @@ fun Question(
 
     }
 }
-
-/*
-class QuestionViewModel : ViewModel(){
-    var i by mutableStateOf(0)
-    var question by mutableStateOf(questions[i])
-    val counter = mutableStateOf(1)
-    val correct = mutableStateOf(0) // Mantiene el contador de respuestas correctas
-
-    fun onAnswerSelected(selected: String): Boolean {
-        val isCorrect = selected == question.correct
-        if (isCorrect) {
-            correct.value++  // Si la respuesta es correcta, aumentamos el contador de respuestas correctas
-        }
-
-        // Avanzamos a la siguiente pregunta si hay más preguntas
-        return if (i < questions.size - 1) {
-            i++
-            question = questions[i]
-            counter.value++
-            false
-        } else {
-            // Si ya no hay más preguntas, reiniciamos el contador y las preguntas
-            i = 0
-            counter.value = 1
-            true
-        }
-    }
-}
-
- */
