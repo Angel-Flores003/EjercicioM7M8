@@ -207,6 +207,5 @@ fun Question(
                 Text(question.respuestas[3])
             }
         }
-
     }
 }

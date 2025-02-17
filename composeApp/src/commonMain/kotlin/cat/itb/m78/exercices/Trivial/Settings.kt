@@ -3,9 +3,11 @@ package cat.itb.m78.exercices.Trivial
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -23,9 +25,106 @@ fun Settings(onBackToMenu: () -> Unit) {
         modifier = Modifier.fillMaxSize(),
 
         ){
-        Text("Difficulty", fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(10.dp))
-        Text("Rounds", fontWeight = FontWeight.Bold)//Añadir 3 botones?
+        Row {
+            Text("Difficulty", fontWeight = FontWeight.Bold)
+            Spacer(Modifier.width((5.dp)))
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Magenta,
+                            Color.Green
+                        )
+                    )
+                )
+            ) {
+                Text("Easy")
+            }
+            Spacer(Modifier.width((5.dp)))
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Magenta,
+                            Color.Green
+                        )
+                    )
+                )
+            ) {
+                Text("Normal")
+            }
+            Spacer(Modifier.width((5.dp)))
+            Button(onClick = {},
+
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Magenta,
+                            Color.Green
+                        )
+                    )
+                )
+            ) {
+                Text("Hard")
+            }
+        }
+        Spacer(Modifier.height(10.dp))
+        Row {
+            Text("Rounds", fontWeight = FontWeight.Bold)
+            Spacer(Modifier.width((5.dp)))
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Magenta,
+                            Color.Green
+                        )
+                    )
+                )
+            ) {
+                Text("5")
+            }
+            Spacer(Modifier.width((5.dp)))
+            Button(onClick = {},
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Magenta,
+                            Color.Green
+                        )
+                    )
+                )
+            ) {
+                Text("10")
+            }
+            Spacer(Modifier.width((5.dp)))
+            Button(onClick = {},
+
+                shape = CutCornerShape(4.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                            Color.Magenta,
+                            Color.Green
+                        )
+                    )
+                )
+            ) {
+                Text("15")
+            }
+        }
         Spacer(Modifier.height(20.dp))
         Text("Time for round", fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(50.dp))

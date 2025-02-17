@@ -60,7 +60,7 @@ class PracticaViewModel : ViewModel() {
 
     fun navigateTo(screen: Practica) {
         if (screen == Practica.Menu) {
-            score.value = 0 // Reiniciar score al volver al menú
+            score.value = 0
         }
         screenState.value = screen
     }
