@@ -56,9 +56,11 @@ val questions = listOf(Preguntas("¿Cuál es la capital de Francia?", listOf("Be
     Preguntas( "¿Son mejores los perros o los gatos?", listOf("Los Gatos", "Los perros", "Prefiero los hamsters", "Cada uno tiene sus cosas"), "Cada uno tiene sus cosas"),//4
     Preguntas( "¿Cuando se creó minecraft?", listOf("2002", "2011", "2009", "2035"), "2011"))//2
 
-class QuestionViewModel : ViewModel(){
+class QuestionViewModel : ViewModel() {
+    private val shuffledQuestions = questions.shuffled() // Mezcla las preguntas
     var i by mutableStateOf(0)
-    var question by mutableStateOf(questions[i])
+    var question by mutableStateOf(shuffledQuestions[i])
+    var shuffledAnswers by mutableStateOf(shuffledQuestions[i].respuestas.shuffled())
     val counter = mutableStateOf(1)
     val correct = mutableStateOf(0)
 
@@ -69,25 +71,37 @@ class QuestionViewModel : ViewModel(){
         if (isCorrect) {
             correct.value++
         }
-        return if (i < questions.size - 1)
-        {
+        return if (i < questions.size - 1) {
             i++
-            question = questions[i]
+            question = shuffledQuestions[i]
+            shuffledAnswers = question.respuestas.shuffled()
             counter.value++
             false
-        }
-        else {
+        } else {
             i = 0
             counter.value = 1
             true
         }
     }
+    fun restart() {
+        i = 0
+        question = shuffledQuestions[i]
+        shuffledAnswers = question.respuestas.shuffled() // Re-mezcla respuestas
+        counter.value = 1
+        correct.value = 0
+    }
 }
 
 @Composable
-fun Question(gotoResults: ()-> Unit){
+fun Question(gotoResults: (Int)-> Unit){
     val viewModel = viewModel { QuestionViewModel() }
-    Question(viewModel.question, viewModel::onAnswerSelected, viewModel.counter.value, gotoResults)
+    Question(
+        viewModel.question,
+        viewModel::onAnswerSelected,
+        viewModel.counter.value
+        ){
+        gotoResults(viewModel.correct.value)
+    }
 }
 
 @Composable
@@ -104,7 +118,7 @@ fun Question(
     ){
         Spacer(Modifier.height(10.dp))
         Text("Round ${counter}/15", fontWeight = FontWeight.Bold)
-        Spacer(Modifier.height(200.dp))
+        Spacer(Modifier.height(100.dp))
         Text(text = question.text, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(20.dp))
 

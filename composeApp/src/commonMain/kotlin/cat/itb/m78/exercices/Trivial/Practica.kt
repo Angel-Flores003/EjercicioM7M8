@@ -49,7 +49,6 @@ import org.jetbrains.compose.resources.painterResource
 sealed interface Practica {
     object Menu : Practica
     object Question : Practica
-    //data class Question(val message: String) : Practica
     object Settings : Practica
     object Result : Practica
 
@@ -57,10 +56,26 @@ sealed interface Practica {
 
 class PracticaViewModel : ViewModel() {
     val screenState = mutableStateOf<Practica>(Practica.Menu)
+    var score = mutableStateOf(0)
 
-    fun navigateTo(practica: Practica) {
-        screenState.value = practica
+    fun navigateTo(screen: Practica) {
+        if (screen == Practica.Menu) {
+            score.value = 0 // Reiniciar score al volver al menú
+        }
+        screenState.value = screen
     }
+
+    fun setScore(newScore: Int) {
+        score.value = newScore
+    }
+    /*
+    fun setScore(newScore: Int) {
+        if (screen != Practica.Question) {
+            score.value = 0
+        }
+        score.value = newScore
+    }
+     */
 }
 
 @Composable
@@ -75,7 +90,12 @@ fun Practica() {
         )
 
         Practica.Settings -> Settings(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
-        Practica.Result -> Result(onBackToMenu = { viewModel.navigateTo(Practica.Menu) })
-        Practica.Question -> Question(gotoResults = {viewModel.navigateTo(Practica.Result)})
+        Practica.Result -> Result(
+            onBackToMenu = { viewModel.navigateTo(Practica.Menu) },
+            score = viewModel.score.value
+            )
+        Practica.Question -> Question(gotoResults = { correctAnswers ->
+            viewModel.setScore(correctAnswers)
+            viewModel.navigateTo(Practica.Result)})
     }
 }

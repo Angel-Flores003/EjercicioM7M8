@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Result(
     onBackToMenu: () -> Unit,
-//    score: Int,
+    score: Int,
 //    total: Int
     ) {
     Column (
@@ -31,7 +31,7 @@ fun Result(
     ){
         Spacer(Modifier.height(200.dp))
         Text(text = "Your Score: ", fontWeight = FontWeight.Black)
-//        Text(text = "$score de 15 preguntes", style = MaterialTheme.typography.bodyLarge) //$total
+        Text(text = "$score de 15 preguntes", style = MaterialTheme.typography.bodyLarge) //$total
         Spacer(Modifier.height(250.dp))
         Button(onClick = onBackToMenu,
             shape = CutCornerShape(4.dp),
