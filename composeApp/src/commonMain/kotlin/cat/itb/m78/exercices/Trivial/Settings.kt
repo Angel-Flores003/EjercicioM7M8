@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 fun Settings(onBackToMenu: () -> Unit) {
     Column (
         modifier = Modifier.fillMaxSize(),
-
         ){
         Spacer(Modifier.height(10.dp))
         Row {

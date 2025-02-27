@@ -28,7 +28,7 @@ fun Menu(
     onSettingsClick: () -> Unit,
     onQuestionClick: () -> Unit
 ) {
-    var text by remember{ mutableStateOf("") }
+//    var text by remember{ mutableStateOf("") }
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,

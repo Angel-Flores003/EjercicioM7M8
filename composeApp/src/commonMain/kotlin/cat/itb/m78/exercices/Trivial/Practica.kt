@@ -51,7 +51,6 @@ sealed interface Practica {
     object Question : Practica
     object Settings : Practica
     object Result : Practica
-
 }
 
 class PracticaViewModel : ViewModel() {

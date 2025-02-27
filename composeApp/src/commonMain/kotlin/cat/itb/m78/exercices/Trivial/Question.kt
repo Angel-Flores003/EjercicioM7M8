@@ -57,7 +57,7 @@ val questions = listOf(Preguntas("¿Cuál es la capital de Francia?", listOf("Be
     Preguntas( "¿Cuando se creó minecraft?", listOf("2002", "2011", "2009", "2035"), "2011"))//2
 
 class QuestionViewModel : ViewModel() {
-    private val shuffledQuestions = questions.shuffled() // Mezcla las preguntas
+    private val shuffledQuestions = questions.shuffled()
     var i by mutableStateOf(0)
     var question by mutableStateOf(shuffledQuestions[i])
     var shuffledAnswers by mutableStateOf(shuffledQuestions[i].respuestas.shuffled())
@@ -86,7 +86,7 @@ class QuestionViewModel : ViewModel() {
     fun restart() {
         i = 0
         question = shuffledQuestions[i]
-        shuffledAnswers = question.respuestas.shuffled() // Re-mezcla respuestas
+        shuffledAnswers = question.respuestas.shuffled()
         counter.value = 1
         correct.value = 0
     }
