@@ -24,8 +24,10 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import m78exercices.composeapp.generated.resources.Cargando
 import m78exercices.composeapp.generated.resources.Res
 import m78exercices.composeapp.generated.resources.dice_2
+import m78exercices.composeapp.generated.resources.dicerollericon
 import m78exercices.composeapp.generated.resources.generatedFace
 import org.jetbrains.compose.resources.painterResource
 import kotlin.random.Random
@@ -67,7 +69,7 @@ fun ChisteRandom() {
         } else {
             Text("Cargando chiste...")
             Image(
-                painter = painterResource(Res.drawable.d),
+                painter = painterResource(Res.drawable.Cargando),
                 modifier = Modifier.size((100.dp)),
                 contentDescription = null
             )
