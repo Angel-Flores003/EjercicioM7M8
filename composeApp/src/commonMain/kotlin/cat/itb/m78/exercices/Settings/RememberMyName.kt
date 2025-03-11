@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.russhwolf.settings.Settings
 
-
 private const val KEY ="NAME_K"
 object MyNameStorage{
     val settings = Settings()
@@ -50,9 +49,7 @@ fun RememberMyNameScreen(myData: String?, name: String, updateName: (String) -> 
             Row{
                 Text("Hello " )
                 Text(myData, fontWeight = FontWeight.Bold)
-
             }
-
         }
         OutlinedTextField(name, updateName)
         Button(save){
