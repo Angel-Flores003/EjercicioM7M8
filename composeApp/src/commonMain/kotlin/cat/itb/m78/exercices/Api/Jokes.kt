@@ -67,7 +67,7 @@ fun ChisteRandom() {
         } else {
             Text("Cargando chiste...")
             Image(
-                painter = painterResource(Res.drawable.dice_2),
+                painter = painterResource(Res.drawable.d),
                 modifier = Modifier.size((100.dp)),
                 contentDescription = null
             )
