@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -68,11 +69,7 @@ fun ChisteRandom() {
             Text("Punchline: ${joke.punchline}")
         } else {
             Text("Cargando chiste...")
-            Image(
-                painter = painterResource(Res.drawable.Cargando),
-                modifier = Modifier.size((100.dp)),
-                contentDescription = null
-            )
+            CircularProgressIndicator()
         }
     }
 }

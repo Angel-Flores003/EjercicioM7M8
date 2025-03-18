@@ -67,6 +67,9 @@ kotlin {
             implementation("io.ktor:ktor-client-content-negotiation:2.2.3") // Para negociación de contenido
             implementation("io.ktor:ktor-serialization-kotlinx-json:2.2.3") // Para serialización de JSON con Kotlin
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0") // Versión de Kotlinx Serialization
+
+            implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
         }
 
         commonTest.dependencies {

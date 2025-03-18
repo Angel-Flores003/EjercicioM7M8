@@ -18,7 +18,6 @@ data class BcnTree(
 )
 
 fun mainSuspend() = runBlocking {
-    // Aquí ejecutas tu función suspendida
     main()
 }
 
