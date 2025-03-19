@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import cat.itb.m78.exercices.Api.Estatembassaments.Embassaments
+import cat.itb.m78.exercices.Api.Estatembassaments.EmbassamentsApi
 import coil3.compose.AsyncImage
 
 @Composable

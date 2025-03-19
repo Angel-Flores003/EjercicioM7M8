@@ -26,7 +26,7 @@ import coil3.compose.AsyncImage
 fun countriescreen() {
     val viewModel = viewModel { countriesViewModel() }
     val countries = viewModel.countries.value
-    countriesscreen(countries)
+ //   countriesscreen(countries)
 }
 
 @Composable
