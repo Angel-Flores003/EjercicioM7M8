@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.compose.hotreload)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinx.serialization)
+    id("app.cash.sqldelight") version "2.0.2"
 }
 
 composeCompiler {
@@ -70,6 +71,8 @@ kotlin {
 
             implementation("io.coil-kt.coil3:coil-compose:3.1.0")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
+
+            implementation("app.cash.sqldelight:coroutines-extensions:2.0.2")
         }
 
         commonTest.dependencies {
@@ -84,16 +87,23 @@ kotlin {
             implementation(libs.androidx.activityCompose)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
+
+            implementation("app.cash.sqldelight:android-driver:2.0.2")
+            implementation("androidx.startup:startup-runtime:1.2.0")
         }
 
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.okhttp)
+
+            implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+
+            implementation("app.cash.sqldelight:native-driver:2.0.2")
         }
 
     }
@@ -146,4 +156,14 @@ compose.desktop {
 
 tasks.register<ComposeHotRun>("runHot") {
     mainClass.set("HotrunKt")
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("cat.itb.m78.exercices.db")
+            schemaOutputDirectory.set(file("src/commonMain/sqldelight/databases"))
+            verifyMigrations.set(true)
+        }
+    }
 }

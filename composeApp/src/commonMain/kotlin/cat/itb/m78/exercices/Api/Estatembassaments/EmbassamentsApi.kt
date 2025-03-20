@@ -14,10 +14,10 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class Embassaments(
-    val dia: DateTimeUnit,
+    val dia: String,
     val estaci: String,
-    val nivell_absolut: Int,
-    val percentatge_volum_embassat: Int,
+    val nivell_absolut: Double,
+    val percentatge_volum_embassat: Double,
     val volum_embassat: Double,
 )
 
@@ -32,12 +32,3 @@ object EmbassamentsApi {
     }
     suspend fun listEmbassaments() = client.get(url).body<List<Embassaments>>()
 }
-//
-//@Serializable
-//data class Embassaments(
-//    @Serializable(with = DateTimeSerializer::class) val dia: LocalDateTime,
-//    val estaci: String,
-//    val nivell_absolut: Int,
-//    val percentatge_volum_embassat: Int,
-//    val volum_embassat: Double,
-//)
