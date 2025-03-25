@@ -3,9 +3,9 @@ package cat.itb.m78.exercices.DateBase
 import app.cash.sqldelight.db.SqlDriver
 import cat.itb.m78.exercices.db.Database
 
-expect fun Db(): SqlDriver
+expect fun createDriver(): SqlDriver
 fun createDatabase(): Database {
-    val driver = Db()
+    val driver = createDriver()
     return Database(driver)
 }
 val database by lazy { createDatabase() }
