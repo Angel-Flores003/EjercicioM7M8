@@ -58,23 +58,3 @@ fun LibNavScreenSample() {
         }
     }
 }
-
-//@Composable
-//fun LibraryNav() {
-//    val viewModel = viewModel<ManualNavViewModel>()
-//    val screen by remember { viewModel.screenState }
-//
-//    when (screen) {
-//        Screen.MainMenu -> MainMenu(
-//            onScreen1Click = { viewModel.navigateTo(Screen.Screen1) },
-//            onScreen2Click = { viewModel.navigateTo(Screen.Screen2) },
-//            onScreen3HelloClick = { viewModel.navigateTo(Screen.Screen3Hello) },
-//            onScreen3ByeClick = { viewModel.navigateTo(Screen.Screen3Bye) }
-//        )
-//
-//        Screen.Screen1 -> Screen1(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-//        Screen.Screen2 -> Screen2(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-//        Screen.Screen3Hello -> Screen3Hello(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-//        Screen.Screen3Bye -> Screen3Bye(onBackToMainMenu = { viewModel.navigateTo(Screen.MainMenu) })
-//    }
-//}
