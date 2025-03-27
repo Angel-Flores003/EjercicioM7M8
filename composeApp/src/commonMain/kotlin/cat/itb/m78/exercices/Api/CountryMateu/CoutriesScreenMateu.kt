@@ -44,8 +44,6 @@ fun CountriesScreen(countries: List<Country>?) {
                     )
 
                 }
-
-
             }
         }
     }
