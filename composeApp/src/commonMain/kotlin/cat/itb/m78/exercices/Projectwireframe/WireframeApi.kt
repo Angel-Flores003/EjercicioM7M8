@@ -14,13 +14,13 @@ import kotlinx.serialization.json.Json
 data class Wireframe(
     val id: Long,
     val name: String,
-    val size: String,
+    val size: String? = null,
     val age: String? = null,
     val bounty: String? = null,
-    val crew: crew,
+    val crew: crew? = null,
     val fruit: fruit? = null,
-    @SerialName ("job") val funcion: String,
-    val status: String,
+    @SerialName ("job") val funcion: String? = null,
+    val status: String? = null,
 )
 
 @Serializable
@@ -29,8 +29,8 @@ data class crew(
     val name: String,
     val description: String? = null,
     val status: String,
-    @SerialName("number") val tripulantes: String,
-    @SerialName ("total_prime") val total_price: String,
+    @SerialName("number") val tripulantes: String? = null,
+    @SerialName ("total_prime") val total_price: String? = null,
 )
 
 @Serializable
@@ -40,7 +40,7 @@ data class fruit(
     val description: String,
     val type: String,
     @SerialName("filename") val Imatge: String,
-    val roman_name: String,
+    val roman_name: String? = null,
 )
 
 class WireframeApi {
