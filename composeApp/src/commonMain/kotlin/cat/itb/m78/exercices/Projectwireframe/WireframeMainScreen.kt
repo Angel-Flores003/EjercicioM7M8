@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -19,30 +20,44 @@ import coil3.compose.AsyncImage
 fun WireframeMainScreen() {
     val viewModel = viewModel { WireframeViewModel() }
     val wireframe = viewModel.wireframe.value
-    WireframeScreen(wireframe)
+    WireframeScreen(viewModel.otherlist.value, viewModel.otherlistfilter.value, viewModel::filterList)
+    //WireframeScreen(wireframe, viewModel.otherlistfilter.value, viewModel::filterList)
 }
 
 @Composable
-fun WireframeScreen(wireframe: List<Wireframe>?) {
+fun WireframeScreen(
+    wireframe: List<Wireframe>?,
+    newFilter: String,
+    filterList: (String) -> Unit
+    ) {
     if(wireframe==null){
         CircularProgressIndicator()
     } else {
-        LazyColumn() {
-            items(wireframe) { wireframe ->
-                Row {
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text("Name: " + wireframe.name, fontWeight = FontWeight.Bold)
-                        wireframe.funcion?.let { Text("Post: " + it) }
-                        Text("Bounty: " + wireframe.bounty.toString() + "$")
-                        wireframe.crew?.let { Text("Belongs to the crew: " + it.name) }
-                        wireframe.fruit?.let { Text("Fruit: " + it.name) }
-                        wireframe.fruit?.let {
-                            AsyncImage(
-                                model = it.Imatge, // Use the Imatge property
-                                contentDescription = null
-                            )
+        Column {
+            TextField(
+                value = newFilter,
+                label = { Text("Search") },
+                onValueChange = filterList
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+
+            LazyColumn() {
+                items(wireframe) { wireframe ->
+                    Row {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Name: " + wireframe.name, fontWeight = FontWeight.Bold)
+                            wireframe.funcion?.let { Text("Post: " + it) }
+                            Text("Bounty: " + wireframe.bounty.toString() + "$")
+                            wireframe.crew?.let { Text("Belongs to the crew: " + it.name) }
+                            wireframe.fruit?.let { Text("Fruit: " + it.name) }
+                            wireframe.fruit?.let {
+                                AsyncImage(
+                                    model = it.Imatge, // Use the Imatge property
+                                    contentDescription = null
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(15.dp))
                         }
-                        Spacer(modifier = Modifier.height(15.dp))
                     }
                 }
             }

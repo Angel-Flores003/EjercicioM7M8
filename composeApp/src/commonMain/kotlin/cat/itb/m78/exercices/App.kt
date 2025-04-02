@@ -10,5 +10,5 @@ import cat.itb.m78.exercices.theme.AppTheme
 
 @Composable
 internal fun App() = AppTheme {
-    WireframeDetailScreen(1)
+    WireframeMainScreen()
 }
