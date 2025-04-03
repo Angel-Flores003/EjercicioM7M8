@@ -14,6 +14,11 @@ kotlinx-serialization = "1.7.3"
 kotlinx-datetime = "0.6.1"
 hotreload = "1.0.0-dev.32.1"
 lifecycleLivedataCoreKtx = "2.8.7"
+material3Android = "1.3.1"
+material3CommonAndroid = "1.0.0-alpha01"
+composeMaterial = "1.4.1"
+composeMaterial3 = "1.0.0-alpha35"
+identityJvm = "202411.1"
 
 [libraries]
 
@@ -40,6 +45,11 @@ androidx-navigation-composee = { module = "org.jetbrains.androidx.navigation:nav
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 androidx-lifecycle-livedata-core-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-core-ktx", version.ref = "lifecycleLivedataCoreKtx" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
+androidx-material3-common-android = { group = "androidx.compose.material3", name = "material3-common-android", version.ref = "material3CommonAndroid" }
+androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterial3" }
+identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
 
 [plugins]
 

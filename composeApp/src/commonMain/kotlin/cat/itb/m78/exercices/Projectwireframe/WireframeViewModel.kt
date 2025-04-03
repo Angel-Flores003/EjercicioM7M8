@@ -19,17 +19,16 @@ class WireframeViewModel : ViewModel() {
         }
     }
 
-    // Función para buscar un Wireframe por ID
+    // Buscar un Wireframe por ID
     fun fetchWireframeById(id: Long) {
         viewModelScope.launch(Dispatchers.Default) {
-            // Aquí solo estamos actualizando el estado de onewireframe
+            // Actualizar el estado de onewireframe
             onewireframe.value = WireframeApi().listWireframe().find { it.id == id }
         }
     }
 
     fun filterList(newFilter: String) {
         otherlistfilter.value = newFilter
-        //val filter = otherlistfilter.value
         otherlist.value = wireframe.value?.filter { it.name.contains(newFilter) }
     }
 }

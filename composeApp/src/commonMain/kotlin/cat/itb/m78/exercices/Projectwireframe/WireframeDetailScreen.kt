@@ -1,19 +1,29 @@
 package cat.itb.m78.exercices.Projectwireframe
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage as AsyncImage1
 
@@ -21,6 +31,7 @@ import coil3.compose.AsyncImage as AsyncImage1
 fun WireframeDetailScreen(wireframeId: Long) {
     val viewModel = viewModel<WireframeViewModel>()
     val onewireframe = viewModel.onewireframe.value
+    var checked by remember { mutableStateOf(false) }
 
     // Llamada a fetchWireframeById cuando wireframeId cambia
     LaunchedEffect(wireframeId) {
@@ -31,7 +42,7 @@ fun WireframeDetailScreen(wireframeId: Long) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CircularProgressIndicator() // Cargando mientras se obtiene el wireframe
+            CircularProgressIndicator()
         }
     } else {
         // Aquí mostramos solo un ítem de la lista
@@ -42,7 +53,7 @@ fun WireframeDetailScreen(wireframeId: Long) {
             ) {
                 Text("Name: " + onewireframe.name, fontWeight = FontWeight.Bold)
                 Text("Size: " + onewireframe.size)
-                Text("Age: " + onewireframe.age)  // Aquí debería ser `onewireframe.age` y no `wireframe.age`
+                Text("Age: " + onewireframe.age)
                 onewireframe.funcion?.let { Text("Post: " + it) }
                 Text("Bounty: " + onewireframe.bounty.toString() + "$")
                 Spacer(modifier = Modifier.height(10.dp))
@@ -54,7 +65,7 @@ fun WireframeDetailScreen(wireframeId: Long) {
                 onewireframe.fruit?.let { Text("Fruit: " + it.name) }
                 onewireframe.fruit?.let {
                     AsyncImage1(
-                        model = it.Imatge, // Usar la propiedad Imatge
+                        model = it.Imatge,
                         contentDescription = null
                     )
                 }
@@ -63,7 +74,20 @@ fun WireframeDetailScreen(wireframeId: Long) {
                 onewireframe.fruit?.let { Text("Description: " + it.description) }
                 Spacer(modifier = Modifier.height(15.dp))
                 Text("Status: " + onewireframe.status)
-                //Spacer(modifier = Modifier.height(25.dp))
+            }
+            Column {
+                IconToggleButton(checked = checked, onCheckedChange = { checked = it }) {
+                    Icon(
+
+                        if (checked) Icons.Default.Favorite
+                        else Icons.Default.FavoriteBorder
+                        ,
+                        contentDescription =
+                            if (checked) "Añadir a marcadores"
+                            else "Quitar de marcadores",
+                        tint = Color(0xFFF00000)
+                    )
+                }
             }
         }
     }

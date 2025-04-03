@@ -128,6 +128,11 @@ android {
 //https://developer.android.com/develop/ui/compose/testing#setup
 dependencies {
     implementation(libs.androidx.lifecycle.livedata.core.ktx)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.material3.common.android)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.identity.jvm)
     androidTestImplementation(libs.androidx.uitest.junit4)
     debugImplementation(libs.androidx.uitest.testManifest)
 }
