@@ -11,6 +11,7 @@ class WireframeViewModel : ViewModel() {
     val onewireframe = mutableStateOf<Wireframe?>(null)
     val otherlist = mutableStateOf<List<Wireframe>?>(null)
     var otherlistfilter = mutableStateOf("")
+    val showFavorites = mutableStateOf(false)
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
@@ -27,8 +28,30 @@ class WireframeViewModel : ViewModel() {
         }
     }
 
+//    fun filterList(newFilter: String) {
+//        otherlistfilter.value = newFilter
+//        otherlist.value = wireframe.value?.filter { it.name.contains(newFilter) }
+//    }
+
     fun filterList(newFilter: String) {
         otherlistfilter.value = newFilter
-        otherlist.value = wireframe.value?.filter { it.name.contains(newFilter) }
+        applyFilters()
     }
+
+    fun toggleFavorites(showFavs: Boolean) {
+        showFavorites.value = showFavs
+        applyFilters()
+    }
+
+    fun applyFilters() {
+        val baseList = wireframe.value ?: emptyList()
+        val filterText = otherlistfilter.value.lowercase()
+        val filteredList = baseList.filter { wireframe ->
+            val matchesText = wireframe.name.lowercase().contains(filterText)
+            val matchesFavorite = !showFavorites.value || wireframe.isFavorite == true
+            matchesText && matchesFavorite
+        }
+        otherlist.value = filteredList
+    }
+
 }
