@@ -1,6 +1,5 @@
 package cat.itb.m78.exercices.Projectwireframe
 
-import coil3.Image
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -21,6 +20,8 @@ data class Wireframe(
     val fruit: fruit? = null,
     @SerialName ("job") val funcion: String? = null,
     val status: String? = null,
+
+    val isFavorite: Boolean = false,
 )
 
 @Serializable
