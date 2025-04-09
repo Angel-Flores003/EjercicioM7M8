@@ -21,6 +21,7 @@ composeMaterial3 = "1.0.0-alpha35"
 identityJvm = "202411.1"
 roomCommon = "2.6.1"
 roomCommonJvm = "2.7.0-rc03"
+navigationCompose = "2.8.9"
 
 [libraries]
 
@@ -54,6 +55,7 @@ androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-
 identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", version.ref = "roomCommonJvm" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 

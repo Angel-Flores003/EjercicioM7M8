@@ -23,20 +23,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil3.compose.AsyncImage
+
 
 @Composable
 fun WireframeMainScreen() {
+    val navController = rememberNavController() // Crear NavController
     val viewModel = viewModel { WireframeViewModel() }
-    val wireframe = viewModel.wireframe.value
-    WireframeScreen(
-        viewModel.otherlist.value,
-        viewModel.otherlistfilter.value,
-        viewModel::filterList,
-        onShowHome = { viewModel.toggleFavorites(false) },
-        onShowFavorites = { viewModel.toggleFavorites(true) },
-        viewModel::fetchWireframeById
-    )
+
+     NavHost(navController = navController, startDestination = "main_screen") {
+        // Pantalla principal
+        composable("main_screen") {
+            WireframeScreen(
+                wireframe = viewModel.otherlist.value,
+                newFilter = viewModel.otherlistfilter.value,
+                filterList = viewModel::filterList,
+                onShowHome = { viewModel.toggleFavorites(false) },
+                onShowFavorites = { viewModel.toggleFavorites(true) },
+                fetchWireframeById = { id ->
+                    viewModel.fetchWireframeById(id)
+                    navController.navigate("detail_screen/$id") // Navegar a la pantalla de detalle con el id
+                }
+            )
+        }
+
+        // Pantalla de detalle (WireframeDetailScreen)
+        composable("detail_screen/{wireframeId}") { backStackEntry ->
+            val wireframeId = backStackEntry.arguments?.getString("wireframeId")?.toLongOrNull()
+            wireframeId?.let {
+                WireframeDetailScreen(wireframeId = it)
+            }
+        }
+    }
 }
 
 @Composable
@@ -44,7 +65,6 @@ fun WireframeScreen(
     wireframe: List<Wireframe>?,
     newFilter: String,
     filterList: (String) -> Unit,
-
     onShowHome: () -> Unit,
     onShowFavorites: () -> Unit,
     fetchWireframeById: (Long) -> Unit
@@ -56,40 +76,23 @@ fun WireframeScreen(
                     NavigationBarItem(
                         onClick = { onShowHome() },
                         selected = true,
-                        //selected = false,
-                        icon = {
-                            Icon(
-                                Icons.Filled.Home,
-                                contentDescription = "Home"
-                            )
-                        },
-                        label = {
-                            Text(text = "Home")
-                        }
+                        icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
+                        label = { Text("Home") }
                     )
                     NavigationBarItem(
                         onClick = { onShowFavorites() },
                         selected = false,
-                        icon = {
-                            Icon(
-                                Icons.Filled.Favorite,
-                                contentDescription = "Favoriites"
-                            )
-                        },
-                        label = {
-                            Text(text = "Favorites")
-                        }
+                        icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorites") },
+                        label = { Text("Favorites") }
                     )
                 },
             )
-        },
+        }
     ) { innerPadding ->
         if (wireframe == null) {
             CircularProgressIndicator(modifier = Modifier.padding(innerPadding))
         } else {
-            Column(
-                modifier = Modifier.padding(innerPadding)
-            ) {
+            Column(modifier = Modifier.padding(innerPadding)) {
                 TextField(
                     value = newFilter,
                     label = { Text("Search") },
@@ -101,14 +104,18 @@ fun WireframeScreen(
                     items(wireframe) { wireframe ->
                         Row {
                             Column(modifier = Modifier.weight(1f)) {
-                                Text("Name: " + wireframe.name, fontWeight = FontWeight.Bold, modifier = Modifier.clickable{ fetchWireframeById(wireframe.id) })
-                                wireframe.funcion?.let { Text("Post: " + it) }
-                                Text("Bounty: " + wireframe.bounty.toString() + "$")
-                                wireframe.crew?.let { Text("Belongs to the crew: " + it.name) }
-                                wireframe.fruit?.let { Text("Fruit: " + it.name) }
+                                Text(
+                                    "Name: ${wireframe.name}",
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.clickable { fetchWireframeById(wireframe.id) }
+                                )
+                                wireframe.funcion?.let { Text("Post: $it") }
+                                Text("Bounty: ${wireframe.bounty}$")
+                                wireframe.crew?.let { Text("Belongs to the crew: ${it.name}") }
+                                wireframe.fruit?.let { Text("Fruit: ${it.name}") }
                                 wireframe.fruit?.let {
                                     AsyncImage(
-                                        model = it.Imatge, // Use the Imatge property
+                                        model = it.Imatge,
                                         contentDescription = null
                                     )
                                 }
@@ -121,3 +128,105 @@ fun WireframeScreen(
         }
     }
 }
+
+
+
+
+
+//
+//@Composable
+//fun WireframeMainScreen() {
+//    val viewModel = viewModel { WireframeViewModel() }
+//    val wireframe = viewModel.wireframe.value
+//    WireframeScreen(
+//        viewModel.otherlist.value,
+//        viewModel.otherlistfilter.value,
+//        viewModel::filterList,
+//        onShowHome = { viewModel.toggleFavorites(false) },
+//        onShowFavorites = { viewModel.toggleFavorites(true) },
+//        viewModel::fetchWireframeById
+//    )
+//}
+//
+//@Composable
+//fun WireframeScreen(
+//    wireframe: List<Wireframe>?,
+//    newFilter: String,
+//    filterList: (String) -> Unit,
+//
+//    onShowHome: () -> Unit,
+//    onShowFavorites: () -> Unit,
+//    fetchWireframeById: (Long) -> Unit
+//) {
+//    Scaffold(
+//        bottomBar = {
+//            BottomAppBar(
+//                actions = {
+//                    NavigationBarItem(
+//                        onClick = { onShowHome() },
+//                        selected = true,
+//                        //selected = false,
+//                        icon = {
+//                            Icon(
+//                                Icons.Filled.Home,
+//                                contentDescription = "Home"
+//                            )
+//                        },
+//                        label = {
+//                            Text(text = "Home")
+//                        }
+//                    )
+//                    NavigationBarItem(
+//                        onClick = { onShowFavorites() },
+//                        selected = false,
+//                        icon = {
+//                            Icon(
+//                                Icons.Filled.Favorite,
+//                                contentDescription = "Favoriites"
+//                            )
+//                        },
+//                        label = {
+//                            Text(text = "Favorites")
+//                        }
+//                    )
+//                },
+//            )
+//        },
+//    ) { innerPadding ->
+//        if (wireframe == null) {
+//            CircularProgressIndicator(modifier = Modifier.padding(innerPadding))
+//        } else {
+//            Column(
+//                modifier = Modifier.padding(innerPadding)
+//            ) {
+//                TextField(
+//                    value = newFilter,
+//                    label = { Text("Search") },
+//                    onValueChange = filterList
+//                )
+//                Spacer(modifier = Modifier.height(15.dp))
+//
+//                LazyColumn() {
+//                    items(wireframe) { wireframe ->
+//                        Row {
+//                            Column(modifier = Modifier.weight(1f)) {
+//                                Text("Name: " + wireframe.name, fontWeight = FontWeight.Bold, modifier = Modifier.clickable{ fetchWireframeById(wireframe.id) })
+//                                wireframe.funcion?.let { Text("Post: " + it) }
+//                                Text("Bounty: " + wireframe.bounty.toString() + "$")
+//                                wireframe.crew?.let { Text("Belongs to the crew: " + it.name) }
+//                                wireframe.fruit?.let { Text("Fruit: " + it.name) }
+//                                wireframe.fruit?.let {
+//                                    AsyncImage(
+//                                        model = it.Imatge, // Use the Imatge property
+//                                        contentDescription = null
+//                                    )
+//                                }
+//                                Spacer(modifier = Modifier.height(15.dp))
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}

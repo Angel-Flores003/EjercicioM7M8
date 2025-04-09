@@ -51,4 +51,15 @@ class WireframeViewModel : ViewModel() {
         otherlist.value = filteredList
     }
 
+
+//    fun updateFavoriteStatus(id: Long, isFavorite: Boolean) {
+//        viewModelScope.launch(Dispatchers.Default) {
+//            val updatedWireframe = wireframe.value?.find { it.id == id }
+//            updatedWireframe?.let {
+//                it.isFavorite = isFavorite
+//
+//                wireframe.value = wireframe.value
+//            }
+//        }
+//    }
 }

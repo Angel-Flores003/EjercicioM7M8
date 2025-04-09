@@ -162,6 +162,7 @@ tasks.register<ComposeHotRun>("runHot") {
 dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.common.jvm)
+    implementation(libs.androidx.navigation.compose)
 }
 
 sqldelight {
