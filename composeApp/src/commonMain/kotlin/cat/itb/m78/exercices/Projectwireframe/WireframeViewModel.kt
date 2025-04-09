@@ -1,5 +1,6 @@
 package cat.itb.m78.exercices.Projectwireframe
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,6 +13,7 @@ class WireframeViewModel : ViewModel() {
     val otherlist = mutableStateOf<List<Wireframe>?>(null)
     var otherlistfilter = mutableStateOf("")
     val showFavorites = mutableStateOf(false)
+    val messagetext = mutableStateListOf<String>()
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
@@ -27,11 +29,6 @@ class WireframeViewModel : ViewModel() {
             onewireframe.value = WireframeApi().listWireframe().find { it.id == id }
         }
     }
-
-//    fun filterList(newFilter: String) {
-//        otherlistfilter.value = newFilter
-//        otherlist.value = wireframe.value?.filter { it.name.contains(newFilter) }
-//    }
 
     fun filterList(newFilter: String) {
         otherlistfilter.value = newFilter

@@ -1,0 +1,12 @@
+CREATE TABLE MyWireFrame (
+    id INTEGER PRIMARY KEY NOT NULL,
+    text TEXT NOT NULL
+);
+
+CREATE INDEX mytable_full ON MyWireFrame(text);
+
+seletAll:
+SELECT * FROM MyWireFrame;
+
+isnert:
+INSERT INTO MyWireFrame(text) VALUES (?);

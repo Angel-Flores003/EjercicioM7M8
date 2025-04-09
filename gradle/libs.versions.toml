@@ -19,6 +19,8 @@ material3CommonAndroid = "1.0.0-alpha01"
 composeMaterial = "1.4.1"
 composeMaterial3 = "1.0.0-alpha35"
 identityJvm = "202411.1"
+roomCommon = "2.6.1"
+roomCommonJvm = "2.7.0-rc03"
 
 [libraries]
 
@@ -50,6 +52,8 @@ androidx-material3-common-android = { group = "androidx.compose.material3", name
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
 androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterial3" }
 identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", version.ref = "roomCommonJvm" }
 
 [plugins]
 
