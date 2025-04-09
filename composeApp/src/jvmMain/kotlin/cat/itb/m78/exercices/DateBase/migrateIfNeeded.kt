@@ -5,7 +5,6 @@ import app.cash.sqldelight.db.SqlCursor
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 
-
 /**
  * Creates DB or executes migrations in needed
  */
