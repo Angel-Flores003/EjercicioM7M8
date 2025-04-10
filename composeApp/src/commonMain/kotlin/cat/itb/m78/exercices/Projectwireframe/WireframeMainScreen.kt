@@ -28,7 +28,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil3.compose.AsyncImage
 
-
 @Composable
 fun WireframeMainScreen() {
     val navController = rememberNavController() // Crear NavController
@@ -65,6 +64,7 @@ fun WireframeScreen(
     wireframe: List<Wireframe>?,
     newFilter: String,
     filterList: (String) -> Unit,
+
     onShowHome: () -> Unit,
     onShowFavorites: () -> Unit,
     fetchWireframeById: (Long) -> Unit

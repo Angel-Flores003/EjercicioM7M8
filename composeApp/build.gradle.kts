@@ -163,6 +163,7 @@ dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.common.jvm)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.material3.android)
 }
 
 sqldelight {
