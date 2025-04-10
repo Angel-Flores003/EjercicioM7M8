@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
@@ -33,7 +34,6 @@ fun Prova2ScreenList() {
     Prova2Screen(
         viewModel.otherlist.value,
         viewModel.otherlistfilter.value,
-        //viewModel::filterList,
         onShowAll = { viewModel.toggleAll(false) },
         onShowFaltes = { viewModel.toggleAll(true) },
         viewModel::fetchProva2ById
@@ -57,7 +57,7 @@ fun Prova2Screen(
                         onClick = { onShowAll() },
                         selected = true,
                         icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
-                        label = { Text("All") }
+                        label = { Text("Llista d'estudiants") }
                     )
                     NavigationBarItem(
                         onClick = { onShowFaltes() },

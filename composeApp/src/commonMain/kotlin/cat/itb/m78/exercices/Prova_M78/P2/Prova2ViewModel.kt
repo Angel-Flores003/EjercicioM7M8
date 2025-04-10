@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.itb.m78.exercices.DateBase.database
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -15,6 +16,13 @@ class Prova2ViewModel : ViewModel(){
     val onShowAll = mutableStateOf(false)
     val messagetext = mutableStateListOf<String>()
 
+//    val myTableQueries = database.myTableQueries
+//    val all = myTableQueries.selectAll().executeAsList()
+
+    val myStudentsQueries = database.myTableQueries
+    val allStudents = myStudentsQueries.selectAll().executeAsList()
+    val insert = myStudentsQueries.insert("")
+
     init {
         viewModelScope.launch(Dispatchers.Default) {
             prova2.value = Prova2Api().listStudents()
@@ -23,6 +31,9 @@ class Prova2ViewModel : ViewModel(){
     }
 
     fun fetchProva2ById(id: Long) {
+        val prova2 = prova2.value ?: return
+
+
         viewModelScope.launch(Dispatchers.Default) {
             oneprova2.value = Prova2Api().listStudents().find { it.id == id }
         }
