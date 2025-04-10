@@ -23,7 +23,6 @@ import coil3.compose.AsyncImage
 @Composable
 fun Extension2ScreenList() {
     val viewModel = viewModel { Prova2ViewModel() }
-    val extension2 = viewModel.prova2.value
 
     Prova2Extension2Screen(
         viewModel.otherlist.value,

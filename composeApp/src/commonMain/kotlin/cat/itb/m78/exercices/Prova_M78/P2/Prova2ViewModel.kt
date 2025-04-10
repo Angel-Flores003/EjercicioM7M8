@@ -16,9 +16,6 @@ class Prova2ViewModel : ViewModel(){
     val onShowAll = mutableStateOf(false)
     val messagetext = mutableStateListOf<String>()
 
-//    val myTableQueries = database.myTableQueries
-//    val all = myTableQueries.selectAll().executeAsList()
-
     val myStudentsQueries = database.myTableQueries
     val allStudents = myStudentsQueries.selectAll().executeAsList()
     val insert = myStudentsQueries.insert("")

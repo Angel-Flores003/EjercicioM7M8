@@ -13,6 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun Prova2ScreenFaltes(prova2Id: Long) {
     val viewModel = viewModel { Prova2ViewModel() }
     val prova2 = viewModel.prova2.value
+    //val faltes = myStudentsQueries.insert("")
 
     LaunchedEffect(prova2Id){
         viewModel.fetchProva2ById(prova2Id)

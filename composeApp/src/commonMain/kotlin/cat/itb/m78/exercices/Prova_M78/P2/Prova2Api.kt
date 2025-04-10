@@ -1,6 +1,5 @@
 package cat.itb.m78.exercices.Prova_M78.P2
 
-import cat.itb.m78.exercices.Projectwireframe.Wireframe
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -19,7 +18,7 @@ data class Prova2(
     @SerialName("photo_link") val photo: String,
 
     val haveFalta: Boolean = false,
-    val countfaltes: Int = 0,
+    val countfaltes: Int = 1,
 )
 
 class Prova2Api {
@@ -32,5 +31,4 @@ class Prova2Api {
         }
     }
     suspend fun listStudents() = client.get(url).body<List<Prova2>>()
-
 }
