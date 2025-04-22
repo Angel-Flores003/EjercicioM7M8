@@ -159,12 +159,6 @@ compose.desktop {
 tasks.register<ComposeHotRun>("runHot") {
     mainClass.set("HotrunKt")
 }
-dependencies {
-    implementation(libs.androidx.room.common)
-    implementation(libs.androidx.room.common.jvm)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.material3.android)
-}
 
 sqldelight {
     databases {
