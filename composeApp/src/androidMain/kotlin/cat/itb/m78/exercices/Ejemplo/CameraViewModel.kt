@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModel
 import coil3.compose.AsyncImage
 import kotlinx.coroutines.awaitCancellation
 
+// Ej 2
 //class CameraViewModel() : ViewModel() {
 //    val surferRequest = mutableStateOf<SurfaceRequest?>(null)
 //    private val cameraPreviewUseCase = Preview.Builder().build().apply {
@@ -44,6 +45,34 @@ import kotlinx.coroutines.awaitCancellation
 //        }
 //    }
 //}
+
+// Ej 3
+//class CameraViewModel : ViewModel() {
+//    val surferRequest = mutableStateOf<SurfaceRequest?>(null)
+//    val capturedImageUri = mutableStateOf<Uri?>(null) // <- NUEVO
+//
+//    private val cameraPreviewUseCase = Preview.Builder().build().apply {
+//        setSurfaceProvider { newSurfaceRequest ->
+//            surferRequest.value = newSurfaceRequest
+//        }
+//    }
+//
+//    val imageCaptureUseCase: ImageCapture = ImageCapture.Builder().build()
+//
+//    suspend fun bindToCamera(appContext: Context, lifecycleOwner: LifecycleOwner) {
+//        val processCameraProvider = ProcessCameraProvider.awaitInstance(appContext)
+//        processCameraProvider.bindToLifecycle(
+//            lifecycleOwner, DEFAULT_BACK_CAMERA, cameraPreviewUseCase, imageCaptureUseCase
+//        )
+//        try {
+//            awaitCancellation()
+//        } finally {
+//            processCameraProvider.unbindAll()
+//        }
+//    }
+//}
+
+// Ej 4
 class CameraViewModel : ViewModel() {
     val surferRequest = mutableStateOf<SurfaceRequest?>(null)
     val capturedImageUri = mutableStateOf<Uri?>(null) // <- NUEVO
@@ -69,6 +98,7 @@ class CameraViewModel : ViewModel() {
     }
 }
 
+// Ej 2
 //fun takePhoto(context: Context, imageCaptureUseCase: ImageCapture) {
 //    val name = "photo_" + System.nanoTime()
 //    val contentValues = ContentValues().apply {
@@ -98,6 +128,42 @@ class CameraViewModel : ViewModel() {
 //    )
 //}
 
+// Ej 3
+//fun takePhoto(context: Context, imageCaptureUseCase: ImageCapture, viewModel: CameraViewModel) {
+//    val name = "photo_" + System.nanoTime()
+//    val contentValues = ContentValues().apply {
+//        put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+//        put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+//            put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+//        }
+//    }
+//
+//    val outputOptions = ImageCapture.OutputFileOptions.Builder(
+//        context.contentResolver,
+//        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//        contentValues
+//    ).build()
+//
+//    imageCaptureUseCase.takePicture(
+//        outputOptions,
+//        ContextCompat.getMainExecutor(context),
+//        object : ImageCapture.OnImageSavedCallback {
+//            override fun onError(exc: ImageCaptureException) {
+//                Log.e("CameraPreview", "Photo capture failed: ${exc.message}", exc)
+//            }
+//
+//            override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+//                output.savedUri?.let { uri ->
+//                    viewModel.capturedImageUri.value = uri // <-- Aquí se guarda la imagen
+//                    Log.d("CameraPreview", "Photo saved to: $uri")
+//                }
+//            }
+//        }
+//    )
+//}
+
+// Ej 4
 fun takePhoto(context: Context, imageCaptureUseCase: ImageCapture, viewModel: CameraViewModel) {
     val name = "photo_" + System.nanoTime()
     val contentValues = ContentValues().apply {
