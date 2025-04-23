@@ -193,6 +193,8 @@ fun takePhoto(context: Context, imageCaptureUseCase: ImageCapture) {
 
 fun showphoto(context: Context, imageCaptureUseCase: ImageCapture, viewModel: CameraViewModel) {
     val name = "photo_" + System.nanoTime()
+    val capturedUri = viewModel.capturedImageUri.value
+
     val contentValues = ContentValues().apply {
         put(MediaStore.MediaColumns.DISPLAY_NAME, name)
         put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")

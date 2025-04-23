@@ -136,7 +136,6 @@ fun CameraScreen() {
     val viewModel = viewModel { CameraViewModel() }
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    val capturedUri = viewModel.capturedImageUri.value
 
     LaunchedEffect(lifecycleOwner) {
         viewModel.bindToCamera(context.applicationContext, lifecycleOwner)
@@ -151,11 +150,15 @@ fun CameraScreen() {
                 modifier = Modifier.fillMaxSize()
             )
             Button({ takePhoto(context, imageCaptureUseCase) },
-                modifier = Modifier.align(Alignment.BottomStart).padding(50.dp)) {
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(50.dp)) {
                 Text("Take Photo")
             }
             Button({ showphoto(context, imageCaptureUseCase, viewModel) },
-                modifier = Modifier.align(Alignment.BottomEnd).padding(50.dp)) {
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(50.dp)) {
                 Text("Show List Photo")
             }
         }
