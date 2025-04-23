@@ -136,9 +136,12 @@ fun CameraScreen() {
     val viewModel = viewModel { CameraViewModel() }
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+    val capturedUri = viewModel.capturedImageUri.value
+
     LaunchedEffect(lifecycleOwner) {
         viewModel.bindToCamera(context.applicationContext, lifecycleOwner)
     }
+
     val surfaceRequest = viewModel.surferRequest.value
     val imageCaptureUseCase = viewModel.imageCaptureUseCase
     surfaceRequest?.let { request ->
