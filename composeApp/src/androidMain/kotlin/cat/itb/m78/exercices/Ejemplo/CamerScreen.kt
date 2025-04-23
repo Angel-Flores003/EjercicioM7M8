@@ -85,47 +85,75 @@ import coil3.compose.rememberAsyncImagePainter
 //}
 
 // Ej 4
+//@Composable
+//fun CameraScreen() {
+//    val viewModel = viewModel { CameraViewModel() }
+//    val context = LocalContext.current
+//    val lifecycleOwner = LocalLifecycleOwner.current
+//    val capturedUri = viewModel.capturedImageUri.value
+//
+//    LaunchedEffect(lifecycleOwner) {
+//        viewModel.bindToCamera(context.applicationContext, lifecycleOwner)
+//    }
+//
+//    if (capturedUri != null) {
+//        // 📸 Mostrar la imagen capturada
+//        Image(
+//            painter = rememberAsyncImagePainter(capturedUri),
+//            contentDescription = "Foto capturada",
+//            modifier = Modifier.fillMaxSize(),
+//            contentScale = ContentScale.Crop
+//        )
+//    } else {
+//        // 🎥 Mostrar la cámara
+//        val surfaceRequest = viewModel.surferRequest.value
+//        val imageCaptureUseCase = viewModel.imageCaptureUseCase
+//        surfaceRequest?.let { request ->
+//            Box {
+//                CameraXViewfinder(
+//                    surfaceRequest = request,
+//                    modifier = Modifier.fillMaxSize()
+//                )
+//                Button(
+//                    onClick = { takePhoto(context, imageCaptureUseCase, viewModel) },
+//                    modifier = Modifier.align(Alignment.BottomStart).padding(50.dp)
+//                ) {
+//                    Text("Take Photo")
+//                }
+//                Button(
+//                    onClick = { showphoto(context, imageCaptureUseCase, viewModel) },
+//                    modifier = Modifier.align(Alignment.BottomEnd).padding(50.dp)
+//                ) {
+//                    Text("Show List Photo")
+//                }
+//            }
+//        }
+//    }
+//}
+
 @Composable
 fun CameraScreen() {
     val viewModel = viewModel { CameraViewModel() }
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    val capturedUri = viewModel.capturedImageUri.value
-
     LaunchedEffect(lifecycleOwner) {
         viewModel.bindToCamera(context.applicationContext, lifecycleOwner)
     }
-
-    if (capturedUri != null) {
-        // 📸 Mostrar la imagen capturada
-        Image(
-            painter = rememberAsyncImagePainter(capturedUri),
-            contentDescription = "Foto capturada",
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-    } else {
-        // 🎥 Mostrar la cámara
-        val surfaceRequest = viewModel.surferRequest.value
-        val imageCaptureUseCase = viewModel.imageCaptureUseCase
-        surfaceRequest?.let { request ->
-            Box {
-                CameraXViewfinder(
-                    surfaceRequest = request,
-                    modifier = Modifier.fillMaxSize()
-                )
-                Button(
-                    onClick = { takePhoto(context, imageCaptureUseCase, viewModel) },
-                    modifier = Modifier.align(Alignment.BottomStart).padding(50.dp)
-                ) {
-                    Text("Take Photo")
-                }
-                Button(
-                    onClick = { takePhoto(context, imageCaptureUseCase, viewModel) },
-                    modifier = Modifier.align(Alignment.BottomEnd).padding(50.dp)
-                ) {
-                    Text("Show List Photo")
-                }
+    val surfaceRequest = viewModel.surferRequest.value
+    val imageCaptureUseCase = viewModel.imageCaptureUseCase
+    surfaceRequest?.let { request ->
+        Box {
+            CameraXViewfinder(
+                surfaceRequest = request,
+                modifier = Modifier.fillMaxSize()
+            )
+            Button({ takePhoto(context, imageCaptureUseCase) },
+                modifier = Modifier.align(Alignment.BottomStart).padding(50.dp)) {
+                Text("Take Photo")
+            }
+            Button({ showphoto(context, imageCaptureUseCase, viewModel) },
+                modifier = Modifier.align(Alignment.BottomEnd).padding(50.dp)) {
+                Text("Show List Photo")
             }
         }
     }
