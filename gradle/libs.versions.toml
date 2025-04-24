@@ -22,6 +22,7 @@ identityJvm = "202411.1"
 roomCommon = "2.6.1"
 roomCommonJvm = "2.7.0-rc03"
 navigationCompose = "2.8.9"
+protoliteWellKnownTypes = "18.0.1"
 
 [libraries]
 
@@ -56,6 +57,7 @@ identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", version.ref = "roomCommonJvm" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+protolite-well-known-types = { group = "com.google.firebase", name = "protolite-well-known-types", version.ref = "protoliteWellKnownTypes" }
 
 [plugins]
 

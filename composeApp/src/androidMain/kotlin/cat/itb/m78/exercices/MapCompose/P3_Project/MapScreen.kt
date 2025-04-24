@@ -1,4 +1,4 @@
-package cat.itb.m78.exercices.MapCompose
+package cat.itb.m78.exercices.MapCompose.P3_Project
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -20,7 +20,7 @@ import io.ktor.websocket.Frame
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun MapsScreen1(){
+fun MapsScreen(){
     GoogleMap(
         googleMapOptionsFactory = {
             GoogleMapOptions().mapId("DEMO_MAP_ID")
@@ -34,5 +34,6 @@ fun MapsScreen1(){
             state = MarkerState(position = LatLng(41.2, 2.0)),
             title = "Marker in Spain"
         )
+        
     }
 }
