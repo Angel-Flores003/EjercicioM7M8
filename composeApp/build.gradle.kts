@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinx.serialization)
     id("app.cash.sqldelight") version "2.0.2"
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 composeCompiler {
@@ -73,6 +74,9 @@ kotlin {
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
 
             implementation("app.cash.sqldelight:coroutines-extensions:2.0.2")
+
+            implementation("com.google.android.gms:play-services-maps:19.0.0")
+            implementation("com.google.maps.android:maps-compose:6.6.0")
         }
 
         commonTest.dependencies {
@@ -169,3 +173,4 @@ sqldelight {
         }
     }
 }
+

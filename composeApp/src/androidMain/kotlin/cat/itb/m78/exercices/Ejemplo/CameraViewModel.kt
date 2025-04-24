@@ -75,7 +75,7 @@ import kotlinx.coroutines.awaitCancellation
 // Ej 4
 class CameraViewModel() : ViewModel() {
     val surferRequest = mutableStateOf<SurfaceRequest?>(null)
-    val capturedImageUri = mutableStateOf<Uri?>(null)
+    val capturedImageUri = mutableStateOf<List<Uri?>>(emptyList())
 
     private val cameraPreviewUseCase = Preview.Builder().build().apply {
         setSurfaceProvider { newSurfaceRequest ->
@@ -219,7 +219,7 @@ fun showphoto(context: Context, imageCaptureUseCase: ImageCapture, viewModel: Ca
 
             override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                 output.savedUri?.let { uri ->
-                    viewModel.capturedImageUri.value = uri // <-- Aquí se guarda la imagen
+                    viewModel.capturedImageUri.value = listOf(uri) // <-- Aquí se guardan las imagenes
                     Log.d("CameraPreview", "Photo saved to: $uri")
                 }
             }
