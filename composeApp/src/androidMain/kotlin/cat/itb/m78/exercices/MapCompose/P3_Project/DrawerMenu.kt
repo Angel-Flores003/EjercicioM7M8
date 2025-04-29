@@ -43,7 +43,6 @@ fun DrawerMenu() {
                         .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(Modifier.height(20.dp))
-                    //Text("Map", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge)
                     NavigationDrawerItem(
                         label = { Text("Map", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge) },
                         selected = false,
@@ -53,7 +52,6 @@ fun DrawerMenu() {
                     HorizontalDivider()
 
                     Spacer(Modifier.height(12.dp))
-                    //Text("List", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge)
                     NavigationDrawerItem(
                         label = { Text("List", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge) },
                         selected = false,
@@ -61,36 +59,6 @@ fun DrawerMenu() {
                     )
                     Spacer(Modifier.height(12.dp))
                     HorizontalDivider()
-
-//                    Text("Section 1", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleMedium)
-//                    NavigationDrawerItem(
-//                        label = { Text("Item 1") },
-//                        selected = false,
-//                        onClick = { /* Handle click */ }
-//                    )
-//                    NavigationDrawerItem(
-//                        label = { Text("Item 2") },
-//                        selected = false,
-//                        onClick = { /* Handle click */ }
-//                    )
-//
-//                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-//
-//                    Text("Section 2", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleMedium)
-//                    NavigationDrawerItem(
-//                        label = { Text("Settings") },
-//                        selected = false,
-//                        icon = { Icon(Icons.Outlined.Settings, contentDescription = null) },
-//                        badge = { Text("20") }, // Placeholder
-//                        onClick = { /* Handle click */ }
-//                    )
-//                    NavigationDrawerItem(
-//                        label = { Text("Help and feedback") },
-//                        selected = false,
-//                        icon = { Icon(Icons.Outlined.Phone, contentDescription = null) },
-//                        onClick = { /* Handle click */ },
-//                    )
-//                    Spacer(Modifier.height(12.dp))
                 }
             }
         },
@@ -99,7 +67,7 @@ fun DrawerMenu() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Navigation Drawer Example") },
+                    title = { Text("") },
                     navigationIcon = {
                         IconButton(onClick = {
                             scope.launch {
