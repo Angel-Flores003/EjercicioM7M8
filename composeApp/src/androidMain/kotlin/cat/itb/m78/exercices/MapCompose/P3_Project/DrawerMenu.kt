@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrawerMenu() {
+fun DrawerMenu(onMapClick: () -> Unit, onListClick: () -> Unit) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
