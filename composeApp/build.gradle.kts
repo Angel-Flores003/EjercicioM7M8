@@ -163,6 +163,9 @@ compose.desktop {
 tasks.register<ComposeHotRun>("runHot") {
     mainClass.set("HotrunKt")
 }
+dependencies {
+    implementation(libs.protolite.well.known.types)
+}
 
 sqldelight {
     databases {

@@ -27,13 +27,12 @@ fun MapsScreen(){
         },
     ) {
         AdvancedMarker(
-            state = MarkerState(position = LatLng(-34.0, 151.0)),
+            state = MarkerState(position = LatLng(-33.0, 151.5)),
             title = "Marker in Sydney"
         )
         AdvancedMarker(
-            state = MarkerState(position = LatLng(41.2, 2.0)),
+            state = MarkerState(position = LatLng(41.5, 2.3)),
             title = "Marker in Spain"
         )
-        
     }
 }
