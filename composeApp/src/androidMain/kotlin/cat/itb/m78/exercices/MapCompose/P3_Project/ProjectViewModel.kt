@@ -21,6 +21,8 @@ import kotlinx.serialization.Serializable
 
 object ProjectScreens {
     @Serializable
+    data object DraweMenu
+    @Serializable
     data object Map
     @Serializable
     data object List
@@ -29,7 +31,13 @@ object ProjectScreens {
 @Composable
 fun ProjectViewModel() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = ProjectScreens.Map) {
+    NavHost(navController = navController, startDestination = ProjectScreens.DraweMenu) {
+        composable<ProjectScreens.DraweMenu> {
+            DrawerMenu(
+                onMapClick = { navController.navigate(ProjectScreens.Map) },
+                onListClick = { navController.navigate(ProjectScreens.List) }
+            )
+        }
         composable<ProjectScreens.Map> {
             MapScreen(
                 onListClick = { navController.navigate(ProjectScreens.List) }

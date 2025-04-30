@@ -46,7 +46,7 @@ fun DrawerMenu(onMapClick: () -> Unit, onListClick: () -> Unit) {
                     NavigationDrawerItem(
                         label = { Text("Map", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge) },
                         selected = false,
-                        onClick = { /* Handle click */ }
+                        onClick = { onMapClick() }
                     )
                     Spacer(Modifier.height(12.dp))
                     HorizontalDivider()
@@ -55,7 +55,7 @@ fun DrawerMenu(onMapClick: () -> Unit, onListClick: () -> Unit) {
                     NavigationDrawerItem(
                         label = { Text("List", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge) },
                         selected = false,
-                        onClick = { /* Handle click */ }
+                        onClick = { onListClick() }
                     )
                     Spacer(Modifier.height(12.dp))
                     HorizontalDivider()
