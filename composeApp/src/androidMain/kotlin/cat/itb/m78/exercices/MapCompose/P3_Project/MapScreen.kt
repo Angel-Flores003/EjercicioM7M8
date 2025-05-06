@@ -10,7 +10,7 @@ import com.google.maps.android.compose.MarkerState
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun MapScreen(onListClick: () -> Unit){
+fun MapScreen() {
     GoogleMap(
         googleMapOptionsFactory = {
             GoogleMapOptions().mapId("DEMO_MAP_ID")
@@ -21,14 +21,14 @@ fun MapScreen(onListClick: () -> Unit){
             title = "Marker in Sydney"
         )
         AdvancedMarker(
-            state = MarkerState(position = LatLng(41.5, 2.3)),
+            state = MarkerState(position = LatLng(41.38879, 2.15899)),
             title = "Marker in Spain"
         )
     }
-    AddMarkerScreen()
-    {
-        
-    }
+//    AddMarkerScreen()
+//    {
+//
+//    }
 }
 
 @Composable

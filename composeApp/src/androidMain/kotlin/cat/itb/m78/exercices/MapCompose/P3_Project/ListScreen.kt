@@ -7,10 +7,10 @@ import androidx.compose.runtime.Composable
 import io.ktor.websocket.Frame
 
 @Composable
-fun ListScreen(onMapClick: () -> Unit) {
+fun ListScreen() {
     Column {
         Frame.Text("List Screen")
-        Button(onClick = onMapClick) {
+        Button({ }) {
             Text("Map")
         }
     }

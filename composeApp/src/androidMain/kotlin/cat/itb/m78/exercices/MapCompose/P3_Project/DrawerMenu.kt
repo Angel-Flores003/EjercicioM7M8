@@ -1,5 +1,6 @@
 package cat.itb.m78.exercices.MapCompose.P3_Project
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -31,31 +32,56 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrawerMenu(onMapClick: () -> Unit, onListClick: () -> Unit) {
+fun DrawerMenu(
+    onMapClick: () -> Unit,
+    onListClick: () -> Unit,
+    content: @Composable () -> Unit
+) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
     ModalNavigationDrawer(
+        gesturesEnabled = false,
         drawerContent = {
             ModalDrawerSheet {
                 Column(
-                    modifier = Modifier.padding(horizontal = 16.dp)
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(Modifier.height(20.dp))
                     NavigationDrawerItem(
-                        label = { Text("Map", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge) },
+                        label = {
+                            Text(
+                                "Map",
+                                modifier = Modifier.padding(16.dp),
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                        },
                         selected = false,
-                        onClick = { onMapClick() }
+                        onClick = {
+                            onMapClick()
+                            scope.launch { drawerState.close() }
+
+                        }
                     )
                     Spacer(Modifier.height(12.dp))
                     HorizontalDivider()
 
                     Spacer(Modifier.height(12.dp))
                     NavigationDrawerItem(
-                        label = { Text("List", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge) },
+                        label = {
+                            Text(
+                                "List",
+                                modifier = Modifier.padding(16.dp),
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                        },
                         selected = false,
-                        onClick = { onListClick() }
+                        onClick = {
+                            onListClick()
+                            scope.launch { drawerState.close() }
+                        }
                     )
                     Spacer(Modifier.height(12.dp))
                     HorizontalDivider()
@@ -83,8 +109,10 @@ fun DrawerMenu(onMapClick: () -> Unit, onListClick: () -> Unit) {
                     }
                 )
             }
-        ) {
-            Text("", modifier = Modifier.padding(it))
+        ) { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                content()
+            }
         }
     }
 }

@@ -12,47 +12,58 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.russhwolf.settings.Settings
 
-private const val KEY ="NAME_K"
-object MyNameStorage{
+private const val KEY = "NAME_K"
+
+object MyNameStorage {
     val settings = Settings()
-    fun getName() : String? = settings.getStringOrNull(KEY)
-    fun store(name: String){
+    fun getName(): String? = settings.getStringOrNull(KEY)
+    fun store(name: String) {
         settings.putString(KEY, name)
     }
 }
 
-class RememberMeViewModel : ViewModel(){
+class RememberMeViewModel : ViewModel() {
     val myDataStorage = MyNameStorage
     val storedData = mutableStateOf(myDataStorage.getName())
-    val nameField = mutableStateOf(myDataStorage.getName()?:"")
+    val nameField = mutableStateOf(myDataStorage.getName() ?: "")
 
-    fun updateNameField(name: String){
+    fun updateNameField(name: String) {
         nameField.value = name
     }
 
-    fun store(){
+    fun store() {
         myDataStorage.store(nameField.value)
         storedData.value = myDataStorage.getName()
     }
 }
 
 @Composable
-fun RememberMyNameScreen(){
+fun RememberMyNameScreen() {
     val viewModel = viewModel { RememberMeViewModel() }
-    RememberMyNameScreen(viewModel.storedData.value, viewModel.nameField.value, viewModel::updateNameField, viewModel::store)
+    RememberMyNameScreen(
+        viewModel.storedData.value,
+        viewModel.nameField.value,
+        viewModel::updateNameField,
+        viewModel::store
+    )
 }
 
 @Composable
-fun RememberMyNameScreen(myData: String?, name: String, updateName: (String) -> Unit, save: ()->Unit) {
+fun RememberMyNameScreen(
+    myData: String?,
+    name: String,
+    updateName: (String) -> Unit,
+    save: () -> Unit
+) {
     Column {
-        if(myData!=null){
-            Row{
-                Text("Hello " )
+        if (myData != null) {
+            Row {
+                Text("Hello ")
                 Text(myData, fontWeight = FontWeight.Bold)
             }
         }
         OutlinedTextField(name, updateName)
-        Button(save){
+        Button(save) {
             Text("Save")
         }
     }

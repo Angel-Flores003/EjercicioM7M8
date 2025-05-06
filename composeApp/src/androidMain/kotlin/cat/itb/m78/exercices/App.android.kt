@@ -6,22 +6,18 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import cat.itb.m78.exercices.Ejemplo.CameraScreen
-import cat.itb.m78.exercices.Ejemplo.FeatureThatRequiresCameraPermission
-import cat.itb.m78.exercices.MapCompose.MapsScreen1
-import cat.itb.m78.exercices.MapCompose.P3_Project.DrawerMenu
-import cat.itb.m78.exercices.MapCompose.P3_Project.MapScreen
-import cat.itb.m78.exercices.MapCompose.P3_Project.Permisos
-import cat.itb.m78.exercices.MapCompose.P3_Project.ProjectViewModel
+import cat.itb.m78.exercices.MapCompose.P3_Project.MainScreen
 
 class AppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { ProjectViewModel() }
+        setContent { MainScreen() }
     }
 }
 
 @Preview
 @Composable
-fun AppPreview() { App() }
+fun AppPreview() {
+    App()
+}
