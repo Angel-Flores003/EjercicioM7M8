@@ -24,6 +24,10 @@ fun MapScreen() {
             state = MarkerState(position = LatLng(41.38879, 2.15899)),
             title = "Marker in Spain"
         )
+        AdvancedMarker(
+            state = MarkerState(position = LatLng(41.4534, 2.18629)),
+            title = "Institut Tecnològic de Barcelona (ITB)"
+        )
     }
 //    AddMarkerScreen()
 //    {
